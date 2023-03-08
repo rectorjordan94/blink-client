@@ -10,3 +10,16 @@ export const getAllChannels = (user) => {
         }
     })
 }
+
+export const CreateChannel = (user, newChannel) => {
+    return axios({
+        url: `${apiUrl}/channels`,
+        method: 'POST',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: {
+            channel: newChannel
+        }
+    })
+}

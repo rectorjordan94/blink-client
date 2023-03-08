@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getAllChannels } from '../../api/channels'
+
 import Button from 'react-bootstrap/Button'
 
 const ChannelsIndex = (props) => {
@@ -21,7 +22,7 @@ const ChannelsIndex = (props) => {
 
     const channelButtons = channels.map((channel, i) => {
         return (
-            <Button>{channel.name}</Button>
+            <Button key={i}>{channel.name}</Button>
         )
     })
 

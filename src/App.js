@@ -12,6 +12,7 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import CreateChannel from './components/channels/CreateChannel'
 
 import apiUrl from './apiConfig'
 import { io } from "socket.io-client";
@@ -33,7 +34,7 @@ const App = () => {
 	console.log('user in app', user)
 	console.log('message alerts', msgAlerts)
 	const clearUser = () => {
-    	console.log('clear user ran')
+		console.log('clear user ran')
 		setUser(null)
 	}
 
@@ -48,7 +49,7 @@ const App = () => {
 		setMsgAlerts(() => {
 			return (
 				[{ heading, message, variant, id }]
-      		)
+			)
 		})
 	}
 
@@ -65,21 +66,27 @@ const App = () => {
 						path='/sign-in'
 						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
 					/>
-          <Route
-            path='/sign-out'
-            element={
-              <RequireAuth user={user}>
-                <SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path='/change-password'
-            element={
-              <RequireAuth user={user}>
-                <ChangePassword msgAlert={msgAlert} user={user} />
-              </RequireAuth>}
-          />
+					<Route
+						path='/sign-out'
+						element={
+							<RequireAuth user={user}>
+								<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+							</RequireAuth>}
+					/>
+					<Route
+						path='/change-password'
+						element={
+							<RequireAuth user={user}>
+								<ChangePassword msgAlert={msgAlert} user={user} />
+							</RequireAuth>}
+					/>
+					<Route
+						path='/create-channel'
+						element={
+						<RequireAuth user={user}>
+							<CreateChannel msgAlert={msgAlert} user={user} />
+						</RequireAuth>}
+				/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
