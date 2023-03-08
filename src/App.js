@@ -1,5 +1,5 @@
 // import React, { Component, Fragment } from 'react'
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -13,7 +13,19 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 
+import apiUrl from './apiConfig'
+import { io } from "socket.io-client";
+
+
 const App = () => {
+
+	// const socket = io.connect(apiUrl)
+	useEffect(() => {
+		const socket = io.connect(apiUrl)
+		socket.on('connect', () => console.log(socket.id))
+		socket.on('disconnect', () => console.log('disconnected'))
+	}, [])
+
 
   const [user, setUser] = useState(null)
   const [msgAlerts, setMsgAlerts] = useState([])
