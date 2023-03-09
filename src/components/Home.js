@@ -3,6 +3,7 @@ import ChannelSidebar from "./shared/ChannelSidebar"
 import MessageArea from "./message/MessageArea"
 import ProfileSidebar from "./profile/ProfileSidebar"
 import { getOneChannel } from '../api/channels'
+import { getThreadsFromChannels } from '../api/threads'
 
 const Home = (props) => {
 	const { msgAlert, user } = props
@@ -12,6 +13,8 @@ const Home = (props) => {
 
 	const [channelId, setChannelId] = useState("")
 	const [currentChannel, setCurrentChannel] = useState({})
+	const [threadIds, setThreadIds] = useState("")
+	const [threads, setThreads] = useState([])
 	// use channelId set by clicking the button in the index to then make a call to the api to grab the data from that channel, set the currentChannel as the channel recieved from the response data, use properties of that to display
 
 	const onClick = (e) => {
@@ -32,18 +35,44 @@ const Home = (props) => {
 				.then(res => setCurrentChannel(res.data.channel))
 				.then(() => {
 					console.log('currentChannel', currentChannel)
+					setThreadIds(currentChannel.threads)
+					// console.log('currentchannel.threads: ', currentChannel.threads)
+					// let channelThreads = currentChannel.threads 
+					// let threadString = channelThreads.toString()
+					// console.log('threadString: ', threadString)
+					// setThreadIds(currentChannel.threads.toString())
+					// console.log('threads: ', currentChannelThreads)
+					// getThreadsFromChannels(user, currentChannel.threads)
+					// 	.then(res => setThreads(res.data.threads))
+					// 	.catch(err => {
+					// 		setError(true)
+					// 	})
 				})
 				.catch(err => {
                     setError(true)
                 })
         }
-    }, [channelId])
+	}, [channelId])
+	
+	//! TESTING moving all of this functionality into another .then on the above useEffect
+	useEffect(() => {
+		console.log('currentChannel threads: ', threadIds)
+		if (threadIds && user) {
+			let threadString = threadIds.toString()
+			console.log('threadString', threadString)
+			getThreadsFromChannels(user, threadString)
+				.then(res => setThreads(res.data.threads))
+				.catch(err => {
+					setError(true)
+				})
+		}
+	}, [threadIds])
 
 	return (
 		<div className="container-fluid" >
 			<div className="row g-0 flex-nowrap">
 				<ChannelSidebar msgAlert={msgAlert} user={user} channelId={channelId} onClick={onClick} />
-				<MessageArea  currentChannel={currentChannel} />
+				<MessageArea currentChannel={currentChannel} threads={threads} />
 				
 			</div>	
 		</div>
