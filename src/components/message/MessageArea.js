@@ -1,16 +1,38 @@
 import { useEffect, useState } from 'react'
+import { getThreadsFromChannels } from '../../api/threads'
 
 const MessageArea = (props) => {
 
-    const { currentChannel } = props
+    const { currentChannel, threads, user } = props
+
+    const [error, setError] = useState(false)
+    // const [threads, setThreads] = useState([])
     // currentChannel to display
     // react to changes in currentChannel state (altered by selecting a )
 
-    const [displayChannel, setDisplayChannel] = useState(currentChannel)
+    // const [displayChannel, setDisplayChannel] = useState(currentChannel)
+
+
+    //! MAYBE PULL OUT THE GET THREADS FROM IDS FUNCTIONALITY INTO THIS USE EFFECT INSTEAD
 
     useEffect(() => {
         console.log('currentChannel in msgArea', currentChannel)
     }, [currentChannel])
+
+    // useEffect(() => {
+    //     console.log('threadstring in msgArea: ', threadString)
+    //     if (user && threadString) {
+    //         getThreadsFromChannels(user, threadString)
+	// 			.then(res => setThreads(res.data.threads))
+	// 			.catch(err => {
+	// 				setError(true)
+	// 			})
+    //     }
+    // }, [threadString])
+    
+    useEffect(() => {
+        console.log('threads in msgArea', threads)
+    }, [threads])
 
     if (currentChannel) {
         // if (currentChannel.threads) {

@@ -12,9 +12,13 @@ const Home = (props) => {
 	const [error, setError] = useState(false)
 
 	const [channelId, setChannelId] = useState("")
-	const [currentChannel, setCurrentChannel] = useState({})
+	const [currentChannel, setCurrentChannel] = useState({
+		name: "",
+		description: ""
+	})
 	const [threadIds, setThreadIds] = useState("")
 	const [threads, setThreads] = useState([])
+	// const [threads, setThreads] = useState([])
 	// use channelId set by clicking the button in the index to then make a call to the api to grab the data from that channel, set the currentChannel as the channel recieved from the response data, use properties of that to display
 
 	const onClick = (e) => {
@@ -27,27 +31,39 @@ const Home = (props) => {
         // setFileModalShow(true)
 	}
 	
+	// useEffect((e) => {
+	// 	e.preventDefault()
+	// 	setChannelId(e.target.value)
+	// }, [channelId])
+
     useEffect(() => {
         console.log('current channel id: ', channelId)
         // this works better than onClick because it works every time
         if (user) {
             getOneChannel(user, channelId)
-				.then(res => setCurrentChannel(res.data.channel))
-				.then(() => {
-					console.log('currentChannel', currentChannel)
-					setThreadIds(currentChannel.threads)
-					// console.log('currentchannel.threads: ', currentChannel.threads)
-					// let channelThreads = currentChannel.threads 
-					// let threadString = channelThreads.toString()
-					// console.log('threadString: ', threadString)
-					// setThreadIds(currentChannel.threads.toString())
-					// console.log('threads: ', currentChannelThreads)
-					// getThreadsFromChannels(user, currentChannel.threads)
-					// 	.then(res => setThreads(res.data.threads))
-					// 	.catch(err => {
-					// 		setError(true)
-					// 	})
+				.then((res) => {
+					setCurrentChannel(res.data.channel)
+					setThreadIds(res.data.channel.threads)
 				})
+				// .then(() => setThreadIds(currentChannel.threads))
+				// .then(() => {
+				// 	console.log('currentChannel', currentChannel)
+					
+				// 	// setThreadString(threadIds.toString())
+				// 	// console.log('threadString', threadString)
+				// 	// return threadString
+				// })
+				// .then(() => {
+				// 	if (threadIds && user) {
+				// 		let threadString = threadIds.toString()
+				// 		console.log('threadString', threadString)
+				// 		getThreadsFromChannels(user, threadString)
+				// 			.then(res => setThreads(res.data.threads))
+				// 			.catch(err => {
+				// 				setError(true)
+				// 			})
+				// 	}
+				// })
 				.catch(err => {
                     setError(true)
                 })
@@ -66,7 +82,7 @@ const Home = (props) => {
 					setError(true)
 				})
 		}
-	}, [threadIds])
+	}, [currentChannel, threadIds, channelId])
 
 	return (
 		<div className="container-fluid" >
