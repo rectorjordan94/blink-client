@@ -11,7 +11,7 @@ export const getAllChannels = (user) => {
     })
 }
 
-export const CreateChannel = (user, newChannel) => {
+export const createChannel = (user, newChannel) => {
     return axios({
         url: `${apiUrl}/channels`,
         method: 'POST',
