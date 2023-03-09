@@ -5,13 +5,15 @@ import ChannelsIndex from '../channels/ChannelsIndex'
 import { Link } from 'react-router-dom'
 
 const ChannelSidebar = (props) => {
-    const { msgAlert, user } = props
+    const { msgAlert, user, channelId, onClick } = props
 
     const [modalShow, setModalShow] = useState(false)
 
+    // const [channelId, setChannelId] = useState("")
+
     return (
-        <div>
-            <ChannelsIndex msgAlert={msgAlert} user={user} />
+        <div className="col-2">
+            <ChannelsIndex msgAlert={msgAlert} user={user} channelId={channelId} onClick={onClick} />
             {/* <NewChannelModal
                 msgAlert={msgAlert}
                 user={user}

@@ -23,3 +23,13 @@ export const createChannel = (user, newChannel) => {
         }
     })
 }
+
+export const getOneChannel = (user, channelId) => {
+    return axios({
+        url: `${apiUrl}/channels/${channelId}`,
+        method: 'GET',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
