@@ -10,97 +10,10 @@ const MessageArea = (props) => {
     const { currentChannel, threads, user, msgAlert, triggerRefresh, socket, message, handleChange, handleSubmit } = props
 
     const [error, setError] = useState(false)
-    // const [message, setMessage] = useState({})
     
     // useEffect(() => {
-        
-    // }, [currentChannel])
-    
-    // useEffect(() => {
-    //     socket.emit('threads', threads)
-    //     console.log(socket.emit('threads', threads))
+    //     console.log('threads in msg Area: ', threads)
     // }, [threads])
-
-
-
-    // const onChange = (e) => {
-    //     e.persist()
-
-    //     setMessage(prevMessage => {
-    //         const updatedName = e.target.name
-    //         let updatedValue = e.target.value
-
-    //         // console.log('input type: ', e.target.type)
-
-    //         const updatedMessage = {
-    //             [updatedName] : updatedValue
-    //         }
-
-    //         // console.log('the channel :', updatedMessage)
-            
-    //         return {
-    //             ...prevMessage, ...updatedMessage
-    //         }
-    //     })
-    // }
-
-    // const onSubmit = (e) => {
-    //     e.preventDefault()
-    //     console.log('current channel before message create: ', currentChannel)
-    //     createMessage(user, message)
-    //         // nav to the show page
-    //         .then(res => {
-    //             createThread(user, res.data.message)
-    //                 .then(res => {
-    //                     // console.log('currentChannel: ', currentChannel)
-    //                     // console.log('newly created thread: ', res.data.thread)
-    //                     addThreadToChannel(user, currentChannel._id, res.data.thread._id)
-    //                         .then(() => {
-    //                             console.log('currentChannel before trigger refresh: ', currentChannel)
-    //                             triggerRefresh()
-    //                         })
-    //                         .then(() => {
-    //                             // console.log(res.data)
-    //                             console.log('currentChannel after adding thread: ', currentChannel)
-    //                             socket.emit('thread', res.data.thread)
-    //                         })
-    //                         .catch(err => {
-    //                             msgAlert({
-    //                                 heading: 'Error',
-    //                                 message: 'Could not add thread to channel',
-    //                                 variant: 'danger'
-    //                             })
-    //                         })
-    //                 })
-    //                 .catch(err => {
-    //                     msgAlert({
-    //                         heading: 'Error',
-    //                         message: 'Could not create thread',
-    //                         variant: 'danger'
-    //                     })
-    //                 })
-    //         })
-    //         // send a success message
-    //         .then(() => {
-    //             msgAlert({
-    //                 heading: 'Success',
-    //                 message: 'Message sent successfully',
-    //                 variant: 'success'
-    //             })
-    //         })
-    //         // if there is an error tell the user about it
-    //         .catch(() => {
-    //             msgAlert({
-    //                 heading: 'Error',
-    //                 message: 'Failed to send message channel',
-    //                 variant: 'danger'
-    //             })
-    //         })
-    // }
-    
-    useEffect(() => {
-        console.log('threads in msg Area: ', threads)
-    }, [threads])
 
 
 
@@ -121,7 +34,7 @@ const MessageArea = (props) => {
                 <span className="fw-bold text-primary">{thread.owner.email}</span><span className="badge bg-warning rounded-pill">{thread.replies.length}</span><p>{thread.firstMessage.content}</p>
                 </button>
         ))
-   
+
     
     return (
         <div className="col-10">

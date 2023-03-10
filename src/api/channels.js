@@ -35,8 +35,8 @@ export const getOneChannel = (user, channelId) => {
 }
 
 export const addThreadToChannel = (user, channelId, threadId) => {
-    console.log('channelId in axios call: ', channelId)
-    console.log('threadId in axios call: ', threadId)
+    // console.log('channelId in axios call: ', channelId)
+    // console.log('threadId in axios call: ', threadId)
     return axios({
         url: `${apiUrl}/channels/thread/${channelId}/${threadId}`,
         method: 'PATCH',

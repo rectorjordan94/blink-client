@@ -28,10 +28,18 @@ const Home = (props) => {
 
 	const [refreshThreads, setRefreshThreads] = useState(false)
 
+	const [socketRefresh, setSocketRefresh] = useState(false)
+
 	const onClick = (e) => {
 		e.preventDefault()
 		setChannelId(e.target.id)
 	}
+
+	socket.on('triggerRefresh', () => {
+		console.log('*********socket refreshed threads************')
+		setRefreshThreads(prev => !prev)
+		console.log('*********socket refreshed threads************')
+	})
 
     useEffect(() => {
         if (user) {
@@ -45,7 +53,7 @@ const Home = (props) => {
                     setError(true)
                 })
         }
-	}, [channelId, refreshThreads])
+	}, [channelId, refreshThreads, socketRefresh])
 
 	//! TESTING moving all of this functionality into another .then on the above useEffect
 	useEffect(() => {
@@ -94,20 +102,9 @@ const Home = (props) => {
 						addThreadToChannel(user, currentChannel._id, res.data.thread._id)
 							.then(res => {
 							// console.log('user after add thread', user)
+							// setRefreshThreads(prev => !prev)
 							setRefreshThreads(prev => !prev)
-							// getOneChannel(user, currentChannel._id)
-							// 	.then(res => {
-							// 		// console.log('user after get channel', user)
-							// 		// console.log('res.data', res.data)
-									
-							// 	})
-							// 	.catch(err => {
-							// 		msgAlert({
-							// 			heading: 'Error',
-							// 			message: 'error getting channel',
-							// 			variant: 'danger'
-							// 		})
-							// 	})
+							socket.emit('resetThreads', 'resetThreads')
 						})
 						.catch(err => {
 							msgAlert({
