@@ -56,8 +56,8 @@ const MessageArea = (props) => {
     
     
     const threadListItems = threads.map((thread, i) => (
-        <button className="list-group-item list-group-item-action">
-            <span className="fw-bold text-primary">{thread.owner.email}</span><span class="badge badge-primary badge-pill bg-warning ms-2">{thread.replies.length}</span><p>{thread.firstMessage.content}</p>
+        <button key={i} className="list-group-item list-group-item-action">
+            <span className="fw-bold text-primary">{thread.owner.email}</span><span className="badge badge-primary badge-pill ms-2 bg-warning">{thread.replies.length}</span><p>{thread.firstMessage.content}</p>
             </button>
     ))
     
