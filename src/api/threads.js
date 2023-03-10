@@ -9,13 +9,13 @@ export const createThread = (user, newThread) => {
             Authorization: `Token token=${user.token}`
         },
         data: {
-            thread: newThread
+            thread: { firstMessage: newThread._id }
         }
     })
 }
 
 export const getThreadsFromChannels = (user, threads) => {
-    console.log('threads in axios call', threads)
+    // console.log('threads in axios call', threads)
     return axios({
         url: `${apiUrl}/threads/channel?threads=${threads}`,
         method: 'GET',

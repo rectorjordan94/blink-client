@@ -6,7 +6,7 @@ import { getOneChannel } from '../api/channels'
 import { getThreadsFromChannels } from '../api/threads'
 
 const Home = (props) => {
-	const { msgAlert, user } = props
+	const { msgAlert, user, socket } = props
 	console.log('props in home', props)
 
 	const [error, setError] = useState(false)
@@ -26,8 +26,8 @@ const Home = (props) => {
 		e.preventDefault()
 		// this currently works but the first click does not grab it, may need to be moved from here? 
 		setChannelId(e.target.id)
-		console.log('e.target.id: ', e.target.id)
-		console.log('channelId: ', channelId)
+		// console.log('e.target.id: ', e.target.id)
+		// console.log('channelId: ', channelId)
         // setFileModalShow(true)
 	}
 	
@@ -37,7 +37,7 @@ const Home = (props) => {
 	// }, [channelId])
 
     useEffect(() => {
-        console.log('current channel id: ', channelId)
+        // console.log('current channel id: ', channelId)
         // this works better than onClick because it works every time
         if (user) {
             getOneChannel(user, channelId)
@@ -69,13 +69,13 @@ const Home = (props) => {
                 })
         }
 	}, [channelId])
-	
+
 	//! TESTING moving all of this functionality into another .then on the above useEffect
 	useEffect(() => {
-		console.log('currentChannel threads: ', threadIds)
+		// console.log('currentChannel threads: ', threadIds)
 		if (threadIds && user) {
 			let threadString = threadIds.toString()
-			console.log('threadString', threadString)
+			// console.log('threadString', threadString)
 			getThreadsFromChannels(user, threadString)
 				.then(res => setThreads(res.data.threads))
 				.catch(err => {
@@ -84,11 +84,12 @@ const Home = (props) => {
 		}
 	}, [currentChannel, threadIds, channelId])
 
+
 	return (
 		<div className="container-fluid" >
 			<div className="row g-0 flex-nowrap">
 				<ChannelSidebar msgAlert={msgAlert} user={user} channelId={channelId} onClick={onClick} />
-				<MessageArea currentChannel={currentChannel} threads={threads} />
+				<MessageArea socket={socket} currentChannel={currentChannel} threads={threads} user={user} msgAlert={msgAlert} triggerRefresh={() => setThreads(prev => !prev) } />
 				
 			</div>	
 		</div>

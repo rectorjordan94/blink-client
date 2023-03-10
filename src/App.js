@@ -16,15 +16,17 @@ import CreateChannel from './components/channels/CreateChannel'
 
 import apiUrl from './apiConfig'
 import { io } from "socket.io-client";
-
+const socket = io.connect(apiUrl)
 
 const App = () => {
 
 	// const socket = io.connect(apiUrl)
 	useEffect(() => {
-		const socket = io.connect(apiUrl)
+		
 		socket.on('connect', () => console.log(socket.id))
 		socket.on('disconnect', () => console.log('disconnected'))
+
+		return () => socket.disconnect()
 	}, [])
 
 
@@ -57,7 +59,7 @@ const App = () => {
 			<Fragment>
 				<Header user={user} />
 				<Routes>
-					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
+					<Route path='/' element={<Home msgAlert={msgAlert} user={user} socket={socket} />} />
 					<Route
 						path='/sign-up'
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
