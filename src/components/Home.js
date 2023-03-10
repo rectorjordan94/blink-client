@@ -10,7 +10,7 @@ import { addThreadToChannel } from '../api/channels'
 
 const Home = (props) => {
 	const { msgAlert, user, socket } = props
-	console.log('props in home', props)
+	// console.log('props in home', props)
 
 	const [error, setError] = useState(false)
 
@@ -28,7 +28,9 @@ const Home = (props) => {
 
 	const [refreshThreads, setRefreshThreads] = useState(false)
 
-	const [socketRefresh, setSocketRefresh] = useState(false)
+	// const [socketRefresh, setSocketRefresh] = useState(false)
+
+	// const isMounted = useRef(false)
 
 	const onClick = (e) => {
 		e.preventDefault()
@@ -41,7 +43,10 @@ const Home = (props) => {
 		console.log('*********socket refreshed threads************')
 	})
 
-    useEffect(() => {
+	// socket.off('triggerRefresh', 'triggerRefresh')
+	
+	useEffect(() => {
+		console.log('USE EFFECT 1 RAN ****************')
         if (user) {
             getOneChannel(user, channelId)
 				.then((res) => {
@@ -49,15 +54,19 @@ const Home = (props) => {
 					setThreadIds(res.data.channel.threads)
 					console.log('reset current channel and threads ran')
 				})
+				.then(() => {
+					socket.removeAllListeners()
+				})
 				.catch(err => {
                     setError(true)
                 })
         }
-	}, [channelId, refreshThreads, socketRefresh])
+	}, [channelId, refreshThreads])
 
 	//! TESTING moving all of this functionality into another .then on the above useEffect
 	useEffect(() => {
 		// console.log('currentChannel threads: ', threadIds)
+		console.log('USE EFFECT 2 RAN [][][][][][][]]')
 		if (threadIds && user) {
 			let threadString = threadIds.toString()
 			// console.log('threadString', threadString)
@@ -67,7 +76,7 @@ const Home = (props) => {
 					setError(true)
 				})
 		}
-	}, [currentChannel, threadIds, channelId])
+	}, [threadIds])
 
 	const onChange = (e) => {
         e.persist()
@@ -104,7 +113,7 @@ const Home = (props) => {
 							// console.log('user after add thread', user)
 							// setRefreshThreads(prev => !prev)
 							setRefreshThreads(prev => !prev)
-							socket.emit('resetThreads', 'resetThreads')
+							socket.emit('resetThreads')
 						})
 						.catch(err => {
 							msgAlert({
