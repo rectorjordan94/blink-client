@@ -34,31 +34,51 @@ const MessageArea = (props) => {
         console.log('threads in msgArea', threads)
     }, [threads])
 
-    if (currentChannel) {
+    if (!currentChannel) {
+        return (
+            <p>Select a channel to start chatting...</p>
+        )
+    }
+
+    if (!threads) {
+        return (
+            <p>No messages yet...</p>
+        )
+    }
+
+    // if (currentChannel) {
         // if (currentChannel.threads) {
         //     const threads = currentChannel.threads.map((thread, i) => (
         //         <button key={i} className="list-group-item list-group-item-action">{thread}</button>
         //     ))
         // }
-        
-        return (
-            <div className="col-10">
-                <div className=" bg-dark text-white mx-0">
-                    <p>{currentChannel.name}</p>
-                    <p>{currentChannel.description}</p>
-                </div>
-                <div className="list-group mx-0">
-                    <button className="list-group-item list-group-item-action">thread</button>
-                </div>
-            </div>
-        )
-    }
-
-
+    
+    
+    
+    const threadListItems = threads.map((thread, i) => (
+        <button className="list-group-item list-group-item-action">
+            <span className="fw-bold text-primary">{thread.owner.email}</span><span class="badge badge-primary badge-pill bg-warning ms-2">{thread.replies.length}</span><p>{thread.firstMessage.content}</p>
+            </button>
+    ))
+    
     return (
-        <>
-        </>
+        <div className="col-10">
+            <div className=" bg-dark text-white mx-0">
+                <p>{currentChannel.name}</p>
+                <p>{currentChannel.description}</p>
+            </div>
+            <div className="list-group mx-0">
+                {threadListItems}
+            </div>
+        </div>
     )
+    
+
+
+    // return (
+    //     <>
+    //     </>
+    // )
 }
 
 export default MessageArea
