@@ -25,10 +25,11 @@ export const addProfileToUser = (user, profile) => {
     console.log('profile in axios call: ', profile)
     return axios({
         method: 'PATCH',
-        url: `${apiUrl}/profiles/${profile._id}`,
+        url: `${apiUrl}/profiles/${profile._id}/${user._id}`,
         headers: {
             Authorization: `Token token=${user.token}`
-        }
+        },
+        data: { profile: profile }
     })
 }
 
