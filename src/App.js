@@ -33,6 +33,7 @@ const App = () => {
 	const [profile, setProfile] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
 	const [currentChannel, setCurrentChannel] = useState(null)
+	const [channelId, setChannelId] = useState("")
 	// console.log('user in app', user)
 	// console.log('message alerts', msgAlerts)
 	const clearUser = () => {
@@ -62,11 +63,12 @@ const App = () => {
 
 		return (
 			<Fragment>
-				<Header user={user} profile={profile} />
+				{/* deleted currentChannel and setCurrentChannel from header props */}
+				<Header user={user} profile={profile} channelId={channelId} setChannelId={setChannelId} />
 				<Routes>
 					<Route path='/' element={
 						<RequireAuth user={user}>
-							<Home msgAlert={msgAlert} user={user} socket={socket} profile={profile} currentChannel={currentChannel} setCurrentChannel={setCurrentChannel} />
+							<Home msgAlert={msgAlert} user={user} socket={socket} profile={profile} currentChannel={currentChannel} setCurrentChannel={setCurrentChannel} channelId={channelId} setChannelId={setChannelId} />
 						</RequireAuth>}
 					/>
 					<Route

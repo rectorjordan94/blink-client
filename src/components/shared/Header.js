@@ -63,14 +63,16 @@ const noProfile = (
 	</>
 )
 
-const Header = ({ user, profile }) => (
+const Header = ({ user, profile, msgAlert, channelId, setChannelId }) => (
 	<Navbar bg='primary' variant='dark' expand='md'>
 		<Navbar.Brand className="mx-2">
             <Link to='/' style={linkStyle}>
                 BLINK
             </Link>
 		</Navbar.Brand>
-		<ChannelSearch />
+		{user && (
+			<ChannelSearch user={user} msgAlert={msgAlert} channelId={channelId} setChannelId={setChannelId} />
+		)}
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
 			<Nav className='ml-auto'>
