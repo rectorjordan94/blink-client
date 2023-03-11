@@ -3,34 +3,35 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // import { signUp, signIn } from '../../api/auth'
+import { createProfile } from '../../api/profiles'
 import messages from '../shared/AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 const CreateProfile = (props) => {
-
+    const { msgAlert, user, setProfile } = props
     const [username, setUsername] = useState('')
     const [fullName, setFullName] = useState('')
     const [location, setLocation] = useState('')
     const [pronouns, setPronouns] = useState('')
-
+    // const [owner, setOwner] = useState(user._id)
     const navigate = useNavigate()
 
 	const onProfileCreate = (event) => {
 		event.preventDefault()
 
-		const { msgAlert, user, setProfile } = props
+		
 
         const profileInfo = {username, fullName, location, pronouns}
 
         // need to make an api call to create the profile, then another to add the profile to a user (needs the profile id for that?)
-		signUp(profileInfo)
-			.then(() => signIn(profileInfo))
-			.then((res) => setUser(res.data.user))
+		createProfile(user, profileInfo)
+			// .then(() => signIn(profileInfo))
+			.then((res) => setProfile(res.data.profile))
 			.then(() =>
 				msgAlert({
-					heading: 'Sign Up Success',
+					heading: 'Create Profile success',
 					message: messages.signUpSuccess,
 					variant: 'success',
 				})
@@ -57,7 +58,7 @@ const CreateProfile = (props) => {
                 <h3>Sign Up</h3>
                 <Form onSubmit={onProfileCreate}>
                     <Form.Group controlId='username'>
-                        <Form.Label>Email address</Form.Label>
+                        <Form.Label>Username</Form.Label>
                         <Form.Control
                             type='text'
                             name='username'
