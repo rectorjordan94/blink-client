@@ -45,3 +45,16 @@ export const addThreadToChannel = (user, channelId, threadId) => {
         }
     })
 }
+
+export const updateChannel = (user, channel) => {
+    return axios({
+        url: `${apiUrl}/channels/${channel._id}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: {
+            channel: channel
+        }
+    })
+}

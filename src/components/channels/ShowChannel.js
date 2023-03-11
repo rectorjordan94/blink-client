@@ -1,11 +1,27 @@
 import { useEffect, useState } from 'react'
 import { Button, Container } from 'react-bootstrap'
+import { getOneChannel } from '../../api/channels'
+import EditChannelModal from './EditChannelModal'
 
 const ShowChannel = (props) => {
     const { user, msgAlert, currentChannel, setCurrentChannel } = props
 
     console.log('channel in showChannel: ', currentChannel)
+    
+    const [editModalShow, setEditModalShow] = useState(false)
+    const [updated, setUpdated] = useState(false)
 
+    useEffect(() => {
+        getOneChannel(user, currentChannel._id)
+            .then(res => setCurrentChannel(res.data.channel))
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error',
+                    message: 'Failed to get channel',
+                    variant: 'danger'
+                })
+            }) 
+    }, [updated])
 
 
 
@@ -18,34 +34,44 @@ const ShowChannel = (props) => {
     })
 
     return (
-        <Container className="bg-success">
-            <div className="row">
-                <div className="col">
-                    <h1>{currentChannel.name}</h1>
+        <>
+            <Container className="bg-success">
+                <div className="row">
+                    <div className="col">
+                        <h1>{currentChannel.name}</h1>
+                    </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col">
-                    <h3>{currentChannel.description}</h3>
+                <div className="row">
+                    <div className="col">
+                        <h3>{currentChannel.description}</h3>
+                    </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col">
-                    { currentChannel.members.length > 0 ? membersList : 'no members yet...'}
+                <div className="row">
+                    <div className="col">
+                        { currentChannel.members.length > 0 ? membersList : <p>no members yet...</p>}
+                    </div>
                 </div>
-            </div>
-            <div className="row">
-                {/* <div className="col">
-                    <Button>Add Members</Button>
-                </div> */}
-                <div className="col">
-                    <Button>Edit Channel</Button>
+                <div className="row">
+                    <div className="col">
+                        <Button className="m-2" variant='info' onClick={() => setEditModalShow(true)}>
+                            Edit Channel
+                        </Button>
+                    </div>
+                    <div className="col">
+                        <Button>Delete Channel</Button>
+                    </div>
                 </div>
-                <div className="col">
-                    <Button>Delete Channel</Button>
-                </div>
-            </div>
-        </Container>
+            </Container>
+            <EditChannelModal
+                user={user}
+                show={editModalShow}
+                handleClose={() => setEditModalShow(false)}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                currentChannel={currentChannel}
+            />
+        </>
+        
     )
 }
 
