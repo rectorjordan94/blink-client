@@ -18,11 +18,6 @@ const authenticatedOptions = (
 				Sign Out
 			</Link>
 		</Nav.Item>
-		<Nav.Item>
-			<Link to='profile' style={linkStyle}>
-				Profile
-			</Link>
-		</Nav.Item>
 	</>
 )
 
@@ -47,7 +42,27 @@ const alwaysOptions = (
 	</>
 )
 
-const Header = ({ user }) => (
+const profileExists = (
+	<>
+		<Nav.Item>
+			<Link to='profile' style={linkStyle}>
+				Profile
+			</Link>
+		</Nav.Item>
+	</>
+)
+
+const noProfile = (
+	<>
+		<Nav.Item>
+			<Link to='create-profile' style={linkStyle}>
+				Create Profile
+			</Link>
+		</Nav.Item>
+	</>
+)
+
+const Header = ({ user, profile }) => (
 	<Navbar bg='primary' variant='dark' expand='md'>
 		<Navbar.Brand className="mx-2">
             <Link to='/' style={linkStyle}>
@@ -62,6 +77,7 @@ const Header = ({ user }) => (
 				)}
 				{alwaysOptions}
 				{user ? authenticatedOptions : unauthenticatedOptions}
+				{profile ? profileExists : noProfile}
 			</Nav>
 		</Navbar.Collapse>
 	</Navbar>

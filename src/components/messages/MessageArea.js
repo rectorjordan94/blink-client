@@ -46,9 +46,9 @@ const MessageArea = (props) => {
     
     return (
         <div className="col-10">
-            <div className=" bg-dark text-white mx-0">
+            <div className=" bg-success text-white mx-0">
                 <p>{currentChannel.name}</p>
-                <p>{currentChannel.description}</p>
+                <p className="mb-0">{currentChannel.description}</p>
             </div>
             <div className="list-group mx-0" style={{overflowY: 'scroll', maxHeight: '550px'}}>
                 {threadListItems}

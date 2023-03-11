@@ -1,6 +1,4 @@
-
-
-
+import { useState } from 'react'
 
 const ShowProfile = (props) => {
     const { user, msgAlert } = props

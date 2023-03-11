@@ -14,6 +14,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import CreateChannel from './components/channels/CreateChannel'
 import ShowProfile from './components/profiles/ShowProfile'
+import CreateProfile from './components/profiles/CreateProfile'
 
 import apiUrl from './apiConfig'
 import { io } from "socket.io-client";
@@ -21,21 +22,18 @@ const socket = io.connect(apiUrl)
 
 const App = () => {
 
-	// const socket = io.connect(apiUrl)
 	useEffect(() => {
-		
 		socket.on('connect', () => console.log(socket.id))
 		socket.on('disconnect', () => console.log('disconnected'))
-
 		return () => socket.disconnect()
 	}, [])
 
-
 	const [user, setUser] = useState(null)
+	const [profile, setProfile] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
 
-	console.log('user in app', user)
-	console.log('message alerts', msgAlerts)
+	// console.log('user in app', user)
+	// console.log('message alerts', msgAlerts)
 	const clearUser = () => {
 		console.log('clear user ran')
 		setUser(null)
@@ -58,7 +56,7 @@ const App = () => {
 
 		return (
 			<Fragment>
-				<Header user={user} />
+				<Header user={user} profile={profile} />
 				<Routes>
 					<Route path='/' element={
 						<RequireAuth user={user}>
@@ -85,6 +83,13 @@ const App = () => {
 						element={
 							<RequireAuth user={user}>
 								<ShowProfile msgAlert={msgAlert} user={user} />
+							</RequireAuth>}
+					/>
+					<Route
+						path='/create-profile'
+						element={
+							<RequireAuth user={user}>
+								<CreateProfile msgAlert={msgAlert} user={user} setProfile={setProfile} />
 							</RequireAuth>}
 					/>
 					<Route
