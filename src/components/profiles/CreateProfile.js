@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // import { signUp, signIn } from '../../api/auth'
-import { createProfile } from '../../api/profiles'
+import { createProfile, addProfileToUser } from '../../api/profiles'
 import messages from '../shared/AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
@@ -28,7 +28,10 @@ const CreateProfile = (props) => {
         // need to make an api call to create the profile, then another to add the profile to a user (needs the profile id for that?)
 		createProfile(user, profileInfo)
 			// .then(() => signIn(profileInfo))
-			.then((res) => setProfile(res.data.profile))
+            .then((res) => {
+                console.log('res.data.profile: ', res.data.profile)
+                addProfileToUser(user, res.data.profile)
+            })
 			.then(() =>
 				msgAlert({
 					heading: 'Create Profile success',

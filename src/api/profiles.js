@@ -2,8 +2,8 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 export const createProfile = (user, profileInfo) => {
-    console.log('user in axios call: ', user)
-    console.log('profileInfo in axios call', profileInfo)
+    // console.log('user in axios call: ', user)
+    // console.log('profileInfo in axios call', profileInfo)
 	return axios({
 		method: 'POST',
         url: apiUrl + '/profiles',
@@ -20,3 +20,16 @@ export const createProfile = (user, profileInfo) => {
 		},
 	})
 }
+
+export const addProfileToUser = (user, profile) => {
+    console.log('profile in axios call: ', profile)
+    return axios({
+        method: 'PATCH',
+        url: `${apiUrl}/profiles/${profile._id}`,
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
+
+//! NEED TO ADJUST ROUTE ON BACKEND, POSSIBLY CREATE A ROUTE THAT JUST UPDATES THE USER TO ADD THE PROFILE TO IT 
