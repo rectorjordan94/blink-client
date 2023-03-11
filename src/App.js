@@ -13,6 +13,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import CreateChannel from './components/channels/CreateChannel'
+import ShowChannel from './components/channels/ShowChannel'
 import ShowProfile from './components/profiles/ShowProfile'
 import CreateProfile from './components/profiles/CreateProfile'
 
@@ -31,7 +32,7 @@ const App = () => {
 	const [user, setUser] = useState(null)
 	const [profile, setProfile] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
-	console.log('user in app', user)
+	const [currentChannel, setCurrentChannel] = useState(null)
 	// console.log('user in app', user)
 	// console.log('message alerts', msgAlerts)
 	const clearUser = () => {
@@ -65,7 +66,7 @@ const App = () => {
 				<Routes>
 					<Route path='/' element={
 						<RequireAuth user={user}>
-							<Home msgAlert={msgAlert} user={user} socket={socket} profile={profile} />
+							<Home msgAlert={msgAlert} user={user} socket={socket} profile={profile} currentChannel={currentChannel} setCurrentChannel={setCurrentChannel} />
 						</RequireAuth>}
 					/>
 					<Route
@@ -110,7 +111,14 @@ const App = () => {
 						<RequireAuth user={user}>
 							<CreateChannel msgAlert={msgAlert} user={user} />
 						</RequireAuth>}
-				/>
+					/>
+					<Route
+						path='/show-channel'
+						element={
+						<RequireAuth user={user}>
+								<ShowChannel msgAlert={msgAlert} user={user} currentChannel={currentChannel} setCurrentChannel={setCurrentChannel} />
+						</RequireAuth>}
+					/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert

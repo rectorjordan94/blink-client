@@ -12,7 +12,7 @@ const ChannelSidebar = (props) => {
     // const [channelId, setChannelId] = useState("")
 
     return (
-        <div className="col-2">
+        <div className="col-2 bg-primary">
             <ChannelsIndex msgAlert={msgAlert} user={user} channelId={channelId} onClick={onClick} />
             {/* <NewChannelModal
                 msgAlert={msgAlert}
@@ -21,7 +21,7 @@ const ChannelSidebar = (props) => {
                 handleClose={() => setModalShow(false)}
                 triggerRefresh={triggerRefresh}
             /> */}
-            <Link to='create-channel'>
+            <Link to='create-channel' className="text-white">
 				Add New Channel
 			</Link>
         </div>

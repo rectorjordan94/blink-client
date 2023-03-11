@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 // import { getThreadsFromChannels } from '../../api/threads'
 // import { createMessage } from '../../api/messages'
 // import { createThread } from '../../api/threads'
@@ -31,7 +32,7 @@ const MessageArea = (props) => {
     }
         
     const threadListItems = threads.map((thread, i) => (
-        <a href="#" className="list-group-item list-group-item-action bg-dark border-primary" onClick={onClick} id={thread._id}>
+        <a href="#" className="list-group-item list-group-item-action bg-dark border-primary" onClick={onClick} id={thread._id} key={i}>
                 <div style={{pointerEvents: 'none'}} className="d-flex w-100 justify-content-between align-items-center">
                     <h5 className="mb-1 text-primary" style={{pointerEvents: 'none'}}>{thread.owner.email}</h5>
                     <small className="badge bg-warning rounded-pill" style={{pointerEvents: 'none'}}>{thread.replies.length}</small>
@@ -47,7 +48,10 @@ const MessageArea = (props) => {
     return (
         <div className="col-10">
             <div className=" bg-success text-white mx-0">
-                <p>{currentChannel.name}</p>
+                {/* <p>{currentChannel.name}</p> */}
+                <Link to='show-channel' className="text-white" channel={currentChannel}>
+				    #{currentChannel.name}
+			    </Link>
                 <p className="mb-0">{currentChannel.description}</p>
             </div>
             <div className="list-group mx-0" style={{overflowY: 'scroll', maxHeight: '550px'}}>
