@@ -38,7 +38,7 @@ const CreateChannel = (props) => {
 
         createChannel(user, channel)
             // nav to the show page
-            .then(res => { navigate(`/channels/${res.data.pet.id}`) })
+            .then(res => { navigate('/') })
             // send a success message
             .then(() => {
                 msgAlert({

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import ChannelSidebar from "./shared/ChannelSidebar"
-import MessageArea from "./message/MessageArea"
+import MessageArea from "./messages/MessageArea"
 import ProfileSidebar from "./profile/ProfileSidebar"
 import { getOneChannel } from '../api/channels'
 import { getThreadsFromChannels } from '../api/threads'

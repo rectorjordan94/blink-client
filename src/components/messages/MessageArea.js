@@ -11,10 +11,11 @@ const MessageArea = (props) => {
 
     const [error, setError] = useState(false)
     
-    // useEffect(() => {
-    //     console.log('threads in msg Area: ', threads)
-    // }, [threads])
-
+    const onClick = (e) => {
+        e.preventDefault()
+        console.log(e.target.id)
+        // e.target.id is the id of the thread that was clicked on
+    }
 
 
     if (!currentChannel) {
@@ -29,10 +30,17 @@ const MessageArea = (props) => {
         )
     }
         
-        const threadListItems = threads.map((thread, i) => (
-            <button key={i} className="list-group-item list-group-item-action">
-                <span className="fw-bold text-primary">{thread.owner.email}</span><span className="badge bg-warning rounded-pill">{thread.replies.length}</span><p>{thread.firstMessage.content}</p>
-                </button>
+    const threadListItems = threads.map((thread, i) => (
+        <a href="#" className="list-group-item list-group-item-action bg-dark border-primary" onClick={onClick} id={thread._id}>
+                <div style={{pointerEvents: 'none'}} className="d-flex w-100 justify-content-between align-items-center">
+                    <h5 className="mb-1 text-primary" style={{pointerEvents: 'none'}}>{thread.owner.email}</h5>
+                    <small className="badge bg-warning rounded-pill" style={{pointerEvents: 'none'}}>{thread.replies.length}</small>
+                </div>
+                <div style={{pointerEvents: 'none'}}>
+                    <p className="mb-1 text-white" style={{pointerEvents: 'none'}}>{thread.firstMessage.content}</p>
+                    <small className="text-muted" style={{pointerEvents: 'none'}}>3 days ago</small>
+                </div>
+            </a>
         ))
 
     
@@ -42,7 +50,7 @@ const MessageArea = (props) => {
                 <p>{currentChannel.name}</p>
                 <p>{currentChannel.description}</p>
             </div>
-            <div className="list-group mx-0">
+            <div className="list-group mx-0" style={{overflowY: 'scroll', maxHeight: '550px'}}>
                 {threadListItems}
             </div>
             <MessageForm

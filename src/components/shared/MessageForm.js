@@ -4,13 +4,13 @@ const MessageForm = (props) => {
     const { message, handleChange, handleSubmit } = props
 
     return (
-        <Container>
+        <Container className="w-100 mx-0">
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>Send Message:</Form.Label>
                     <Form.Control 
-                        type="textarea"
-                        placeholder="..........."
+                        as="textarea"
+                        rows={3}
                         name="content"
                         id="content"
                         value={message.content}

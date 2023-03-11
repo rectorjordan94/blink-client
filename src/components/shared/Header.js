@@ -18,6 +18,11 @@ const authenticatedOptions = (
 				Sign Out
 			</Link>
 		</Nav.Item>
+		<Nav.Item>
+			<Link to='profile' style={linkStyle}>
+				Profile
+			</Link>
+		</Nav.Item>
 	</>
 )
 
@@ -44,9 +49,9 @@ const alwaysOptions = (
 
 const Header = ({ user }) => (
 	<Navbar bg='primary' variant='dark' expand='md'>
-		<Navbar.Brand>
+		<Navbar.Brand className="mx-2">
             <Link to='/' style={linkStyle}>
-                react-auth-template
+                BLINK
             </Link>
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />

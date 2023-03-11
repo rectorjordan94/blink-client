@@ -13,6 +13,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import CreateChannel from './components/channels/CreateChannel'
+import ShowProfile from './components/profiles/ShowProfile'
 
 import apiUrl from './apiConfig'
 import { io } from "socket.io-client";
@@ -59,7 +60,11 @@ const App = () => {
 			<Fragment>
 				<Header user={user} />
 				<Routes>
-					<Route path='/' element={<Home msgAlert={msgAlert} user={user} socket={socket} />} />
+					<Route path='/' element={
+						<RequireAuth user={user}>
+							<Home msgAlert={msgAlert} user={user} socket={socket} />
+						</RequireAuth>}
+					/>
 					<Route
 						path='/sign-up'
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
@@ -73,6 +78,13 @@ const App = () => {
 						element={
 							<RequireAuth user={user}>
 								<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+							</RequireAuth>}
+					/>
+					<Route
+						path='/profile'
+						element={
+							<RequireAuth user={user}>
+								<ShowProfile msgAlert={msgAlert} user={user} />
 							</RequireAuth>}
 					/>
 					<Route
