@@ -21,7 +21,7 @@ import { io } from "socket.io-client";
 const socket = io.connect(apiUrl)
 
 const App = () => {
-
+	
 	useEffect(() => {
 		socket.on('connect', () => console.log(socket.id))
 		socket.on('disconnect', () => console.log('disconnected'))
@@ -31,12 +31,17 @@ const App = () => {
 	const [user, setUser] = useState(null)
 	const [profile, setProfile] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
-
+	console.log('user in app', user)
 	// console.log('user in app', user)
 	// console.log('message alerts', msgAlerts)
 	const clearUser = () => {
 		console.log('clear user ran')
 		setUser(null)
+	}
+
+	const clearProfile = () => {
+		console.log('clear profile ran')
+		setProfile(null)
 	}
 
 	const deleteAlert = (id) => {
@@ -60,7 +65,7 @@ const App = () => {
 				<Routes>
 					<Route path='/' element={
 						<RequireAuth user={user}>
-							<Home msgAlert={msgAlert} user={user} socket={socket} />
+							<Home msgAlert={msgAlert} user={user} socket={socket} profile={profile} />
 						</RequireAuth>}
 					/>
 					<Route
@@ -69,20 +74,20 @@ const App = () => {
 					/>
 					<Route
 						path='/sign-in'
-						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
+						element={<SignIn msgAlert={msgAlert} setUser={setUser} setProfile={setProfile} />}
 					/>
 					<Route
 						path='/sign-out'
 						element={
 							<RequireAuth user={user}>
-								<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+								<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} clearProfile={clearProfile} />
 							</RequireAuth>}
 					/>
 					<Route
 						path='/profile'
 						element={
 							<RequireAuth user={user}>
-								<ShowProfile msgAlert={msgAlert} user={user} />
+								<ShowProfile msgAlert={msgAlert} user={user} profile={profile} />
 							</RequireAuth>}
 					/>
 					<Route

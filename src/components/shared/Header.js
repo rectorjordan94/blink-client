@@ -72,9 +72,10 @@ const Header = ({ user, profile }) => (
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
 			<Nav className='ml-auto'>
-				{user && (
+				{profile ? <span className="navbar-text mr-2">Welcome, {profile.username}</span> : user && ( <span className="navbar-text mr-2">Welcome, {user.email} </span>)}
+				{/* {user && (
 					<span className='navbar-text mr-2'>Welcome, {user.email}</span>
-				)}
+				)} */}
 				{alwaysOptions}
 				{user ? authenticatedOptions : unauthenticatedOptions}
 				{profile ? profileExists : noProfile}

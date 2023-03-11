@@ -31,6 +31,7 @@ const CreateProfile = (props) => {
             .then((res) => {
                 console.log('res.data.profile: ', res.data.profile)
                 addProfileToUser(user, res.data.profile)
+                setProfile(res.data.profile)
             })
 			.then(() =>
 				msgAlert({

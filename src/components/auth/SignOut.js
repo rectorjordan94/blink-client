@@ -6,7 +6,7 @@ import { signOut } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
 
 const SignOut = (props) => {
-	const { msgAlert, clearUser, user } = props
+	const { msgAlert, clearUser, user, clearProfile } = props
     console.log(props)
 
     const navigate = useNavigate()
@@ -22,6 +22,7 @@ const SignOut = (props) => {
 			)
 			.finally(() => navigate('/'))
 			.finally(() => clearUser())
+			.finally(() => clearProfile())
     }
 
     const onCancel = () => {

@@ -29,12 +29,21 @@ const SignIn = (props) => {
 	const onSignIn = (event) => {
 		event.preventDefault()
         console.log('the props', props)
-		const { msgAlert, setUser } = props
+		const { msgAlert, setUser, setProfile } = props
 
         const credentials = {email, password}
 
 		signIn(credentials)
-			.then((res) => setUser(res.data.user))
+            .then((res) => {
+                setUser(res.data.user)
+                if (res.data.user.profile) {
+                    setProfile(res.data.user.profile)
+                }
+                //! MAY WANT TO NAVIGATE TO CREATE-PROFILE PAGE AUTOMATICALLY ON SIGN IN IF USER DOESN'T HAVE A PROFILE ALREADY
+                // else {
+                //     navigate('/create-profile')
+                // }
+            })
 			.then(() =>
 				msgAlert({
 					heading: 'Sign In Success',

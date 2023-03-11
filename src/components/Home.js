@@ -10,6 +10,7 @@ import { addThreadToChannel } from '../api/channels'
 
 const Home = (props) => {
 	const { msgAlert, user, socket } = props
+	// console.log('user in home', user)
 	// console.log('props in home', props)
 	const [error, setError] = useState(false)
 	const [channelId, setChannelId] = useState("")

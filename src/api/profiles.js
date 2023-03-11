@@ -22,7 +22,7 @@ export const createProfile = (user, profileInfo) => {
 }
 
 export const addProfileToUser = (user, profile) => {
-    console.log('profile in axios call: ', profile)
+    // console.log('profile in axios call: ', profile)
     return axios({
         method: 'PATCH',
         url: `${apiUrl}/profiles/${profile._id}/${user._id}`,
