@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button, Container } from 'react-bootstrap'
-import { getOneChannel } from '../../api/channels'
+import { useNavigate } from 'react-router-dom'
+import { getOneChannel, removeChannel } from '../../api/channels'
 import EditChannelModal from './EditChannelModal'
 
 const ShowChannel = (props) => {
@@ -10,6 +11,8 @@ const ShowChannel = (props) => {
     
     const [editModalShow, setEditModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         getOneChannel(user, currentChannel._id)
@@ -23,8 +26,17 @@ const ShowChannel = (props) => {
             }) 
     }, [updated])
 
-
-
+    const deleteChannel = () => {
+        removeChannel(user, currentChannel._id)
+            .then(() => { navigate('/') })
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error',
+                    message: 'Unable to delete channel',
+                    variant: 'danger'
+                })
+            })
+    }
 
 
     const membersList = currentChannel.members.map((member, i) => {
@@ -58,8 +70,11 @@ const ShowChannel = (props) => {
                         </Button>
                     </div>
                     <div className="col">
-                        <Button>Delete Channel</Button>
+                        <Button className="m-2" variant='danger' onClick={() => deleteChannel()}>
+                            Delete Channel
+                        </Button>
                     </div>
+                    
                 </div>
             </Container>
             <EditChannelModal

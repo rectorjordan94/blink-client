@@ -58,3 +58,13 @@ export const updateChannel = (user, channel) => {
         }
     })
 }
+
+export const removeChannel = (user, channelId) => {
+    return axios({
+        url: `${apiUrl}/channels/${channelId}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+    })
+}
