@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 // import { addThreadToChannel } from '../../api/channels'
 import { getOneThread } from '../../api/threads'
 import MessageForm from '../shared/MessageForm'
+import ShowThreadModal from '../threads/ShowThreadModal'
 
 //! COME BACK TO THIS
 
@@ -16,6 +17,7 @@ const MessageArea = (props) => {
     const [error, setError] = useState(false)
 
     const [currentThread, setCurrentThread] = useState(null)
+    const [threadModalShow, setThreadModalShow] = useState(false)
     
     const onClick = (e) => {
         e.preventDefault()
@@ -25,6 +27,7 @@ const MessageArea = (props) => {
             .then(res => {
                 console.log('res.data.thread: ', res.data.thread)
                 setCurrentThread(res.data.thread)
+                setThreadModalShow(true)
             })
             .catch(err => {
                 msgAlert({
@@ -79,15 +82,15 @@ const MessageArea = (props) => {
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
             />
-            {/* <ShowThreadModal
+            <ShowThreadModal
                 user={user}
                 show={threadModalShow}
                 handleClose={() => setThreadModalShow(false)}
                 msgAlert={msgAlert}
-                triggerRefresh={() => setUpdated(prev => !prev)}
-                currentChannel={currentChannel}
-                setRefreshChannels={setRefreshChannels}
-            /> */}
+                // triggerRefresh={() => setUpdated(prev => !prev)}
+                currentThread={currentThread}
+                setCurrentThread={setCurrentThread}
+            />
         </div>
     )
     
