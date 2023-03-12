@@ -63,7 +63,7 @@ const noProfile = (
 	</>
 )
 
-const Header = ({ user, profile, msgAlert, channelId, setChannelId }) => (
+const Header = ({ user, profile, msgAlert, channelId, setChannelId, refreshChannels }) => (
 	<Navbar bg='primary' variant='dark' expand='md'>
 		<Navbar.Brand className="mx-2">
             <Link to='/' style={linkStyle}>
@@ -71,7 +71,7 @@ const Header = ({ user, profile, msgAlert, channelId, setChannelId }) => (
             </Link>
 		</Navbar.Brand>
 		{user && (
-			<ChannelSearch user={user} msgAlert={msgAlert} channelId={channelId} setChannelId={setChannelId} />
+			<ChannelSearch user={user} msgAlert={msgAlert} channelId={channelId} setChannelId={setChannelId} refreshChannels={refreshChannels} />
 		)}
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>

@@ -4,11 +4,14 @@ import { Typeahead } from 'react-bootstrap-typeahead'
 import { getAllChannels } from '../../api/channels'
 
 const ChannelSearch = (props) => {
-    const { user, channelId, setChannelId, msgAlert } = props
+    const { user, channelId, setChannelId, msgAlert, refreshChannels } = props
     const [selected, setSelected] = useState([])
     const [options, setOptions] = useState(null)
 
+
+
     useEffect(() => {
+        console.log('!!!!!!!!!!!search options refreshed!!!!!!!!!!!!')
         getAllChannels(user)
             .then(res => setOptions(res.data.channels))
             .catch(err => {
@@ -18,7 +21,7 @@ const ChannelSearch = (props) => {
                     variant: 'danger'
                 })
             })
-    }, [])
+    }, [refreshChannels])
 
     useEffect(() => {
         // console.log('options: ', options)

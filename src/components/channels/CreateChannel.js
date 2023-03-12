@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router-dom'
 
 const CreateChannel = (props) => {
 
-    const { user, msgAlert } = props
+    const { user, msgAlert, setRefreshChannels } = props
     const navigate = useNavigate()
-    console.log('this is navigate: ', navigate)
+    // console.log('this is navigate: ', navigate)
 
     const [channel, setChannel] = useState({})
 
@@ -38,6 +38,7 @@ const CreateChannel = (props) => {
 
         createChannel(user, channel)
             // nav to the show page
+            .then(() => { setRefreshChannels(prev => !prev)})
             .then(res => { navigate('/') })
             // send a success message
             .then(() => {

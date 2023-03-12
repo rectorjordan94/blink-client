@@ -5,9 +5,9 @@ import { getOneChannel, removeChannel } from '../../api/channels'
 import EditChannelModal from './EditChannelModal'
 
 const ShowChannel = (props) => {
-    const { user, msgAlert, currentChannel, setCurrentChannel } = props
+    const { user, msgAlert, currentChannel, setCurrentChannel, setRefreshChannels } = props
 
-    console.log('channel in showChannel: ', currentChannel)
+    // console.log('channel in showChannel: ', currentChannel)
     
     const [editModalShow, setEditModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
@@ -28,6 +28,7 @@ const ShowChannel = (props) => {
 
     const deleteChannel = () => {
         removeChannel(user, currentChannel._id)
+            .then(() => { setRefreshChannels(prev => !prev)})
             .then(() => { navigate('/') })
             .catch(err => {
                 msgAlert({
@@ -84,6 +85,7 @@ const ShowChannel = (props) => {
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 currentChannel={currentChannel}
+                setRefreshChannels={setRefreshChannels}
             />
         </>
         

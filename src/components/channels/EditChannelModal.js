@@ -4,7 +4,7 @@ import ChannelForm from '../shared/ChannelForm'
 import { updateChannel } from '../../api/channels'
 
 const EditChannelModal = (props) => {
-    const { user, show, handleClose, msgAlert, triggerRefresh } = props
+    const { user, show, handleClose, msgAlert, triggerRefresh, setRefreshChannels } = props
 
     const [channel, setChannel] = useState(props.currentChannel)
     
@@ -28,7 +28,10 @@ const EditChannelModal = (props) => {
         e.preventDefault()
 
         updateChannel(user, channel)
-            .then(() => handleClose())
+            .then(() => {
+                setRefreshChannels(prev => !prev)
+                handleClose()
+            })
             .then(() => {
                 msgAlert({
                     heading: 'Edit',
