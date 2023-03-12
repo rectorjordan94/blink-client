@@ -1,11 +1,19 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import { NavDropdown } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import ChannelSearch from './ChannelSearch'
 const linkStyle = {
-    color: 'white',
-    textDecoration: 'none'
+    color: '#000000',
+	textDecoration: 'none',
+	fontWeight: '500',
+	margin: '0 .25rem'
+}
+const brandStyle = {
+    color: '#000000',
+	textDecoration: 'none',
+	fontWeight: '900'
 }
 const authenticatedOptions = (
 	<>
@@ -50,6 +58,17 @@ const profileExists = (
 				Profile
 			</Link>
 		</Nav.Item>
+		{/* <NavDropdown title="Dropdown">
+			{authenticatedOptions}
+			<NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+			<NavDropdown.Item href="#action4">
+				Another action
+			</NavDropdown.Item>
+			<NavDropdown.Divider />
+			<NavDropdown.Item href="#action5">
+				Something else here
+			</NavDropdown.Item>
+		</NavDropdown> */}
 	</>
 )
 
@@ -64,9 +83,9 @@ const noProfile = (
 )
 
 const Header = ({ user, profile, msgAlert, channelId, setChannelId, refreshChannels }) => (
-	<Navbar bg='primary' variant='dark' expand='md'>
+	<Navbar bg='primary' variant='dark' expand='md' id='nav-bar'>
 		<Navbar.Brand className="mx-2">
-            <Link to='/' style={linkStyle}>
+            <Link to='/' style={brandStyle}>
                 BLINK
             </Link>
 		</Navbar.Brand>
@@ -75,8 +94,8 @@ const Header = ({ user, profile, msgAlert, channelId, setChannelId, refreshChann
 		)}
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
-			<Nav className='ml-auto'>
-				{profile ? <span className="navbar-text mr-2">Welcome, {profile.username}</span> : user && ( <span className="navbar-text mr-2">Welcome, {user.email} </span>)}
+			<Nav className='ms-auto me-2 d-flex align-items-center'>
+				{profile ? <span className="navbar-text mx-2">Welcome, {profile.username}</span> : user && ( <span className="navbar-text mx-2">Welcome, {user.email} </span>)}
 				{/* {user && (
 					<span className='navbar-text mr-2'>Welcome, {user.email}</span>
 				)} */}

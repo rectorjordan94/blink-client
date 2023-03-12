@@ -32,7 +32,7 @@ const MessageArea = (props) => {
     }
         
     const threadListItems = threads.map((thread, i) => (
-        <a href="#" className="list-group-item list-group-item-action bg-dark border-primary" onClick={onClick} id={thread._id} key={i}>
+        <a href="#" className="list-group-item list-group-item-action channel-threads" onClick={onClick} id={thread._id} key={i}>
                 <div style={{pointerEvents: 'none'}} className="d-flex w-100 justify-content-between align-items-center">
                     <h5 className="mb-1 text-primary" style={{pointerEvents: 'none'}}>{thread.owner.email}</h5>
                     <small className="badge bg-warning rounded-pill" style={{pointerEvents: 'none'}}>{thread.replies.length}</small>
@@ -46,15 +46,15 @@ const MessageArea = (props) => {
 
     
     return (
-        <div className="col-10">
-            <div className=" bg-success text-white mx-0">
+        <div className="col-9">
+            <div className="text-white mx-0 px-3 d-flex flex-column justify-content-center align-items-start" id="channel-header">
                 {/* <p>{currentChannel.name}</p> */}
-                <Link to='show-channel' className="text-white" channel={currentChannel}>
-				    #{currentChannel.name}
+                <Link to='show-channel' id="channel-name" className="text-white fw-bold fs-3" channel={currentChannel}>
+				    # {currentChannel.name}
 			    </Link>
-                <p className="mb-0">{currentChannel.description}</p>
+                <p className="mb-4">{currentChannel.description}</p>
             </div>
-            <div className="list-group mx-0" style={{overflowY: 'scroll', maxHeight: '550px'}}>
+            <div className="list-group mx-0 w-100" style={{overflowY: 'scroll', maxHeight: '550px'}} id="channel-thread-list-group">
                 {threadListItems}
             </div>
             <MessageForm

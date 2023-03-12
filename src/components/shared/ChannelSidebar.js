@@ -12,7 +12,8 @@ const ChannelSidebar = (props) => {
     // const [channelId, setChannelId] = useState("")
 
     return (
-        <div className="col-2 bg-primary">
+        <div className="col-3 bg-primary" id="channel-sidebar">
+            <h5>Channels</h5>
             <ChannelsIndex msgAlert={msgAlert} user={user} channelId={channelId} onClick={onClick} />
             {/* <NewChannelModal
                 msgAlert={msgAlert}
