@@ -68,3 +68,13 @@ export const removeChannel = (user, channelId) => {
         },
     })
 }
+
+export const addOrRemoveMember = (user, channel, addOrRemove, newMember) => {
+    return axios({
+        url: `${apiUrl}/channels/${channel._id}/${addOrRemove}/${newMember}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+    })
+}

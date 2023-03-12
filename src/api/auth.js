@@ -53,3 +53,13 @@ export const changePassword = (passwords, user) => {
 		},
 	})
 }
+
+export const getAllUsers = (user) => {
+	return axios({
+		url: apiUrl + '/users',
+		method: 'GET',
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		}
+	})
+}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Button, Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { getOneChannel, removeChannel } from '../../api/channels'
+import MemberSearch from '../shared/MemberSearch'
 import EditChannelModal from './EditChannelModal'
 
 const ShowChannel = (props) => {
@@ -44,10 +45,14 @@ const ShowChannel = (props) => {
             })
     }
 
+    if (currentChannel.members.length > 0) {
+        console.log(currentChannel.members)
+    }
+
 
     const membersList = currentChannel.members.map((member, i) => {
         return (
-            <p>{member.email}</p>
+            <p key="i">{member.email}</p>
         )
     })
 
@@ -66,7 +71,10 @@ const ShowChannel = (props) => {
                 </div>
                 <div className="row">
                     <div className="col">
-                        { currentChannel.members.length > 0 ? membersList : <p>no members yet...</p>}
+                        {membersList}
+                    </div>
+                    <div className="col">
+                        <MemberSearch user={user} msgAlert={msgAlert}triggerRefresh={() => setUpdated(prev => !prev)}currentChannel={currentChannel}/>
                     </div>
                 </div>
                 <div className="row">
