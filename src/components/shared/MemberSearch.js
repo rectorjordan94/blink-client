@@ -71,6 +71,7 @@ const MemberSearch = (props) => {
                     labelKey="email"
                     onChange={setSelected}
                     options={options}
+                    minLength={2}
                     placeholder="Search for users..."
                     selected={selected}
                 />

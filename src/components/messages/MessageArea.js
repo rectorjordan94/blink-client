@@ -4,18 +4,35 @@ import { Link } from 'react-router-dom'
 // import { createMessage } from '../../api/messages'
 // import { createThread } from '../../api/threads'
 // import { addThreadToChannel } from '../../api/channels'
+import { getOneThread } from '../../api/threads'
 import MessageForm from '../shared/MessageForm'
+
+//! COME BACK TO THIS
 
 const MessageArea = (props) => {
 
     const { currentChannel, threads, user, msgAlert, triggerRefresh, socket, message, handleChange, handleSubmit } = props
 
     const [error, setError] = useState(false)
+
+    const [currentThread, setCurrentThread] = useState(null)
     
     const onClick = (e) => {
         e.preventDefault()
-        console.log(e.target.id)
+        console.log('e.target.id', e.target.id)
         // e.target.id is the id of the thread that was clicked on
+        getOneThread(user, e.target.id)
+            .then(res => {
+                console.log('res.data.thread: ', res.data.thread)
+                setCurrentThread(res.data.thread)
+            })
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error',
+                    message: 'Could not get thread',
+                    variant: 'danger'
+                })
+            })
     }
 
 
@@ -34,7 +51,7 @@ const MessageArea = (props) => {
     const threadListItems = threads.map((thread, i) => (
         <a href="#" className="list-group-item list-group-item-action channel-threads" onClick={onClick} id={thread._id} key={i}>
                 <div style={{pointerEvents: 'none'}} className="d-flex w-100 justify-content-between align-items-center">
-                    <h5 className="mb-1 text-primary" style={{pointerEvents: 'none'}}>{thread.owner.email}</h5>
+                    <h5 className="mb-1 text-primary" style={{pointerEvents: 'none'}}>{thread.author.username ? thread.author.username : thread.owner.email}</h5>
                     <small className="badge bg-warning rounded-pill" style={{pointerEvents: 'none'}}>{thread.replies.length}</small>
                 </div>
                 <div style={{pointerEvents: 'none'}}>
@@ -62,6 +79,15 @@ const MessageArea = (props) => {
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
             />
+            {/* <ShowThreadModal
+                user={user}
+                show={threadModalShow}
+                handleClose={() => setThreadModalShow(false)}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                currentChannel={currentChannel}
+                setRefreshChannels={setRefreshChannels}
+            /> */}
         </div>
     )
     

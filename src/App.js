@@ -37,6 +37,11 @@ const App = () => {
 	const [refreshChannels, setRefreshChannels] = useState(false)
 	// console.log('user in app', user)
 	// console.log('message alerts', msgAlerts)
+
+	// if (profile) {
+	// 	console.log('profile: ', profile)
+	// }
+	
 	const clearUser = () => {
 		console.log('clear user ran')
 		setUser(null)

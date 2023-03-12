@@ -95,7 +95,7 @@ const Header = ({ user, profile, msgAlert, channelId, setChannelId, refreshChann
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
 			<Nav className='ms-auto me-2 d-flex align-items-center'>
-				{profile ? <span className="navbar-text mx-2">Welcome, {profile.username}</span> : user && ( <span className="navbar-text mx-2">Welcome, {user.email} </span>)}
+				{profile ? profile && ( <span className="navbar-text mx-2">Welcome, {profile.username}</span>) : user && ( <span className="navbar-text mx-2">Welcome, {user.email} </span>)}
 				{/* {user && (
 					<span className='navbar-text mr-2'>Welcome, {user.email}</span>
 				)} */}

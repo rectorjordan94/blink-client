@@ -24,3 +24,13 @@ export const getThreadsFromChannels = (user, threads) => {
         },
     })
 }
+
+export const getOneThread = (user, threadId) => {
+    return axios({
+        url: `${apiUrl}/threads/${threadId}`,
+        method: 'GET',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}

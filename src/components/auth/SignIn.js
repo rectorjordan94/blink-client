@@ -36,6 +36,7 @@ const SignIn = (props) => {
 		signIn(credentials)
             .then((res) => {
                 setUser(res.data.user)
+                // console.log('res.data.user on signin: ', res.data.user)
                 if (res.data.user.profile) {
                     setProfile(res.data.user.profile)
                 }
