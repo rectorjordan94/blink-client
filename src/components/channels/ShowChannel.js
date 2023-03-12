@@ -28,8 +28,13 @@ const ShowChannel = (props) => {
 
     const deleteChannel = () => {
         removeChannel(user, currentChannel._id)
-            .then(() => { setRefreshChannels(prev => !prev)})
-            .then(() => { navigate('/') })
+            .then(() => {
+                setRefreshChannels(prev => !prev)
+            })
+            .then(() => {
+                navigate('/')
+                setCurrentChannel(prev => !prev)
+            })
             .catch(err => {
                 msgAlert({
                     heading: 'Error',
