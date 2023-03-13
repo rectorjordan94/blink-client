@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { Modal } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 // import ChannelForm from '../shared/ChannelForm'
 // import { updateChannel } from '../../api/channels'
-import { replyToThread } from '../../api/messages'
+import { replyToThread, removeReply } from '../../api/messages'
 import ReplyForm from '../shared/ReplyForm'
 
 const ShowThreadModal = (props) => {
@@ -14,7 +14,7 @@ const ShowThreadModal = (props) => {
     const [reply, setReply] = useState("")
 
     // console.log('user in showthreadmodal: ', user)
-    console.log('current thread in show thread modal: ', currentThread)
+    // console.log('current thread in show thread modal: ', currentThread)
     const onChange = (e) => {
         e.persist()
 
@@ -48,8 +48,43 @@ const ShowThreadModal = (props) => {
         // console.log('reply on submit: ', reply)
     }
 
-    console.log('replies in showThreadmodal: ', replies)
+    // console.log('replies in showThreadmodal: ', replies)
+    // const deleteChannel = () => {
+    //     removeChannel(user, currentChannel._id)
+    //         .then(() => {
+    //             setRefreshChannels(prev => !prev)
+    //         })
+    //         .then(() => {
+    //             navigate('/')
+    //             setCurrentChannel(prev => !prev)
+    //         })
+    //         .catch(err => {
+    //             msgAlert({
+    //                 heading: 'Error',
+    //                 message: 'Unable to delete channel',
+    //                 variant: 'danger'
+    //             })
+    //         })
+    // }
+    // const deleteReply = () => {
+    //     removeMessage(user)
+    // }
 
+    const deleteReply = (e) => {
+        e.preventDefault()
+        // console.log(e.target.value)
+        removeReply(user, e.target.value)
+            .then(() => {
+                setRefreshReplies(prev => !prev)
+            })
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error',
+                    message: 'unable to delete reply',
+                    variant: 'danger'
+                })
+            }) 
+    }
 
     if (currentThread && replies) {
         // console.log('currentThread in modal: ', currentThread)
@@ -57,12 +92,15 @@ const ShowThreadModal = (props) => {
         const repliesArray = replies.map((reply, i) => {
             return (
                 // <p key="i">{reply.content}</p>
-                <a href="#" className="list-group-item list-group-item-action" key="i">
+                <a href="#" className="list-group-item list-group-item" key={i}>
                     <div className="d-flex w-100 justify-content-between">
                         <h5 className="mb-1">{reply.owner.profile.username}</h5>
-                        <small>3 days ago</small>
+                        {/* <small>3 days ago</small> */}
+                        {user.id === reply.owner._id ?
+                            <Button variant='danger' value={reply._id} onClick={deleteReply}>X</Button> : <small>3 days ago</small>}
                     </div>
                     <p className="mb-1">{reply.content}</p>
+                    
                 </a>
             )
         })
@@ -75,13 +113,13 @@ const ShowThreadModal = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <div className="list-group mx-0 w-100" style={{ overflowY: 'scroll', maxHeight: '300px' }} id="replies-list-group">
-                    <a href="#" className="list-group-item list-group-item-action">
-                    <div className="d-flex w-100 justify-content-between">
-                        <h5 className="mb-1">{currentThread.author.username}</h5>
-                        <small>3 days ago</small>
-                    </div>
-                    <p className="mb-1">{currentThread.firstMessage.content}</p>
-                    </a>
+                        <a href="#" className="list-group-item list-group-item active" key={123}>
+                        <div className="d-flex w-100 justify-content-between">
+                            <h5 className="mb-1">{currentThread.author.username}</h5>
+                            <small>3 days ago</small>
+                        </div>
+                        <p className="mb-1">{currentThread.firstMessage.content}</p>
+                        </a>
                         {repliesArray}
                     </div>
                     <ReplyForm reply={reply} handleChange={onChange} handleSubmit={onSubmit} />

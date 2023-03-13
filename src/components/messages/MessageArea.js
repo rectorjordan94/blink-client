@@ -8,8 +8,6 @@ import { getOneThread } from '../../api/threads'
 import MessageForm from '../shared/MessageForm'
 import ShowThreadModal from '../threads/ShowThreadModal'
 
-//! COME BACK TO THIS
-
 const MessageArea = (props) => {
 
     const { currentChannel, threads, user, msgAlert, socket, message, handleChange, handleSubmit } = props
@@ -33,12 +31,12 @@ const MessageArea = (props) => {
 	})
 
     useEffect(() => {
-        console.log('USE EFFECT 3 RAN')
+        // console.log('USE EFFECT 3 RAN')
         if (threadId) {
             getOneThread(user, threadId)
             .then(res => {
                 setCurrentThread(res.data.thread)
-                console.log('res.data.thread.replies: ', res.data.thread.replies)
+                // console.log('res.data.thread.replies: ', res.data.thread.replies)
             })
             .then(() => {
                 socket.removeAllListeners()
@@ -51,10 +49,10 @@ const MessageArea = (props) => {
     // TOOK REFRESH REPLIES OUT FOR NOW
 
     useEffect(() => {
-        console.log('USE EFFECT 4 RAN')
+        // console.log('USE EFFECT 4 RAN')
         if (currentThread) {
-            console.log('currentThread in USE EFFECT 4: ', currentThread)
-            console.log('currentthread.replies: ', currentThread.replies)
+            // console.log('currentThread in USE EFFECT 4: ', currentThread)
+            // console.log('currentthread.replies: ', currentThread.replies)
             setReplies(currentThread.replies)
             // setThreadModalShow(true)
         }
@@ -63,29 +61,10 @@ const MessageArea = (props) => {
     useEffect(() => {
         console.log('USE EFFECT 5')
         if (replies) {
-            console.log('replies in use effect 5: ', replies)
+            // console.log('replies in use effect 5: ', replies)
             setThreadModalShow(true)
         }
     }, [replies])
-    // useEffect(() => {
-    //     // e.target.id is the id of the thread that was clicked on
-    //     if (currentThread) {
-    //         getOneThread(user, currentThread._id)
-    //         .then(res => {
-    //             console.log('res.data.thread: ', res.data.thread)
-    //             setCurrentThread(res.data.thread)
-    //             setThreadModalShow(true)
-    //             socket.removeAllListeners()
-    //         })
-    //         .catch(err => {
-    //             msgAlert({
-    //                 heading: 'Error',
-    //                 message: 'Could not get thread',
-    //                 variant: 'danger'
-    //             })
-    //         })
-    //     }
-    // }, [refreshReplies])
 
     if (!currentChannel) {
         return (
