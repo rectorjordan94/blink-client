@@ -10,13 +10,13 @@ import ShowThreadModal from '../threads/ShowThreadModal'
 
 const MessageArea = (props) => {
 
-    const { currentChannel, threads, user, msgAlert, socket, message, handleChange, handleSubmit } = props
+    const { currentChannel, threads, user, msgAlert, socket, message, handleChange, handleSubmit, refreshReplies, setRefreshReplies } = props
 
     const [error, setError] = useState(false)
 
     const [currentThread, setCurrentThread] = useState(null)
     const [threadModalShow, setThreadModalShow] = useState(false)
-    const [refreshReplies, setRefreshReplies] = useState(false)
+    // const [refreshReplies, setRefreshReplies] = useState(false)
 
     const [threadId, setThreadId] = useState('')
     const [replies, setReplies] = useState([])
@@ -46,7 +46,6 @@ const MessageArea = (props) => {
             }) 
         }
     }, [threadId, refreshReplies])
-    // TOOK REFRESH REPLIES OUT FOR NOW
 
     useEffect(() => {
         // console.log('USE EFFECT 4 RAN')

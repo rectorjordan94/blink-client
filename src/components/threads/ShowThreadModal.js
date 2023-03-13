@@ -76,6 +76,7 @@ const ShowThreadModal = (props) => {
         removeReply(user, e.target.value)
             .then(() => {
                 setRefreshReplies(prev => !prev)
+                socket.emit('resetReplies')
             })
             .catch(err => {
                 msgAlert({

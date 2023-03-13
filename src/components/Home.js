@@ -19,7 +19,7 @@ const Home = (props) => {
 	const [threads, setThreads] = useState([])
 	const [message, setMessage] = useState({})
 	const [refreshThreads, setRefreshThreads] = useState(false)
-
+	const [refreshReplies, setRefreshReplies] = useState(false)
 
 	const onClick = (e) => {
 		e.preventDefault()
@@ -46,7 +46,7 @@ const Home = (props) => {
                     setError(true)
                 })
         }
-	}, [channelId, refreshThreads])
+	}, [channelId, refreshThreads, refreshReplies])
 
 	useEffect(() => {
 		console.log('USE EFFECT 2 RAN [][][][][][][]]')
@@ -125,7 +125,10 @@ const Home = (props) => {
 					currentChannel={currentChannel}
 					threads={threads} user={user}
 					msgAlert={msgAlert}
-					setRefreshThreads={setRefreshThreads} />
+					setRefreshThreads={setRefreshThreads}
+					refreshReplies={refreshReplies}
+					setRefreshReplies={setRefreshReplies}
+				/>
 			</div>	
 		</div>
 	)
