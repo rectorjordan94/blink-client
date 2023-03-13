@@ -65,7 +65,7 @@ const SignIn = (props) => {
 	}
 
     return (
-        <div className='row' style={{backgroundColor: '#022C43'}}>
+        <div className='row mx-0' style={{backgroundColor: '#022C43', width: '100%'}}>
             <div className='col-sm-10 col-md-8 mx-auto mt-5' id="sign-in-container">
                 <h1 id="sign-in-header">Sign In</h1>
                 <Form onSubmit={onSignIn}>

@@ -17,6 +17,17 @@ const brandStyle = {
 	fontFamily: 'Faster One',
 	fontSize: '1.75rem',
 }
+
+const noProfile = (
+	<>
+		<Nav.Item>
+			<Link to='create-profile' style={linkStyle}>
+				Create Profile
+			</Link>
+		</Nav.Item>
+	</>
+)
+
 const authenticatedOptions = (
 	<>
 		<Nav.Item>
@@ -74,15 +85,7 @@ const profileExists = (
 	</>
 )
 
-const noProfile = (
-	<>
-		<Nav.Item>
-			<Link to='create-profile' style={linkStyle}>
-				Create Profile
-			</Link>
-		</Nav.Item>
-	</>
-)
+
 
 const Header = ({ user, profile, msgAlert, channelId, setChannelId, refreshChannels }) => (
 	<Navbar bg='primary' variant='dark' expand='md' id='nav-bar'>
@@ -103,7 +106,9 @@ const Header = ({ user, profile, msgAlert, channelId, setChannelId, refreshChann
 				)} */}
 				{alwaysOptions}
 				{user ? authenticatedOptions : unauthenticatedOptions}
-				{profile ? profileExists : noProfile}
+				{profile ? profileExists : null}
+				{!profile ? null : null}
+				{user && !profile ? noProfile : null}
 			</Nav>
 		</Navbar.Collapse>
 	</Navbar>

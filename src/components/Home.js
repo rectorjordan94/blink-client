@@ -9,7 +9,7 @@ import { createThread } from '../api/threads'
 import { addThreadToChannel } from '../api/channels'
 
 const Home = (props) => {
-	const { msgAlert, user, socket, currentChannel, setCurrentChannel, channelId, setChannelId } = props
+	const { msgAlert, user, socket, currentChannel, setCurrentChannel, channelId, setChannelId, profile } = props
 	// console.log('user in home', user)
 	// console.log('props in home', props)
 	const [error, setError] = useState(false)
@@ -134,6 +134,7 @@ const Home = (props) => {
 					setRefreshThreads={setRefreshThreads}
 					refreshReplies={refreshReplies}
 					setRefreshReplies={setRefreshReplies}
+					profile={profile}
 				/>
 			</div>	
 		</div>

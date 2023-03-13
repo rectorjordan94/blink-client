@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
 // import { getThreadsFromChannels } from '../../api/threads'
 // import { createMessage } from '../../api/messages'
 // import { createThread } from '../../api/threads'
@@ -11,7 +12,7 @@ import ShowThreadModal from '../threads/ShowThreadModal'
 
 const MessageArea = (props) => {
 
-    const { currentChannel, threads, user, msgAlert, socket, message, handleChange, handleSubmit, refreshReplies, setRefreshReplies } = props
+    const { currentChannel, threads, user, msgAlert, socket, message, handleChange, handleSubmit, refreshReplies, setRefreshReplies, profile } = props
 
     const [error, setError] = useState(false)
 
@@ -83,7 +84,24 @@ const MessageArea = (props) => {
 
     if (!currentChannel) {
         return (
-            <p>Select a channel to start chatting...</p>
+            <div className="container w-75 d-flex justify-content-center align-items-center" id="info-container">
+                <div class="card mx-5" id="info-card">
+                    <div class="card-header text-center" id="info-header">
+                        BLINK
+                    </div>
+                    <div class="card-body" id="info-body">
+                        <h5 class="card-title text-center mb-3" id="info-username">Hi, <span>{ profile ? profile.username : user.email}</span>!</h5>
+                        <p class="card-text"><span className="info-spans">Welcome to BLINK</span>, a Slack clone project where users can create and join different channels and chat with other users in real-time.</p>
+                        <p class="card-text"><span className="info-spans">For first time users</span>, it is recommend to start by selecting the <span className="info-spans">Create Profile</span> link in the navigation bar so that you can create your own username, add your pronouns, and set your location.</p>
+                        <p class="card-text"><span className="info-spans">If this isn't your first rodeo</span>, or if you prefer to use your email as your username, feel free to select one of your channels from the sidebar to start chatting.</p>
+                        <p class="card-text"><span className="info-spans">Don't see the channel you're looking for?</span> You can search our entire database of channels using the search bar at the top of the page, or click the <span className='info-spans'>+</span> in the sidebar to create your own and invite other users to join!</p>
+                        <p class="card-text">This is a project built with the MERN stack, using the MVC system for organizing the code. To view this project's code or to see any of my other projects click <a href="https://github.com/rectorjordan94" className="info-spans">here</a>.</p>
+                    </div>
+                    <div class="card-footer text-muted d-flex justify-content-end" id="info-footer">
+                        Created by Jordan Rector
+                    </div>
+                </div>
+            </div>
         )
     }
 
