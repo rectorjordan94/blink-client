@@ -117,7 +117,15 @@ const Home = (props) => {
 		<div className="container-fluid px-0" >
 			<div className="row g-0 flex-nowrap">
 				<ChannelSidebar msgAlert={msgAlert} user={user} channelId={channelId} onClick={onClick} />
-				<MessageArea message={message} handleChange={onChange} handleSubmit={onSubmit}  socket={socket} currentChannel={currentChannel} threads={threads} user={user} msgAlert={msgAlert} setRefreshThreads={setRefreshThreads} />
+				<MessageArea
+					message={message}
+					handleChange={onChange}
+					handleSubmit={onSubmit}
+					socket={socket}
+					currentChannel={currentChannel}
+					threads={threads} user={user}
+					msgAlert={msgAlert}
+					setRefreshThreads={setRefreshThreads} />
 			</div>	
 		</div>
 	)

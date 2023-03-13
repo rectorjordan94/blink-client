@@ -6,7 +6,7 @@ import { replyToThread } from '../../api/messages'
 import ReplyForm from '../shared/ReplyForm'
 
 const ShowThreadModal = (props) => {
-    const { user, show, handleClose, msgAlert, triggerRefresh, currentThread, socket } = props
+    const { user, show, handleClose, msgAlert, setRefreshReplies, currentThread, socket, replies } = props
 
     // const [channel, setChannel] = useState(props.currentChannel)
     // const [currentThread, setCurrentThread] = useState(null)
@@ -34,8 +34,8 @@ const ShowThreadModal = (props) => {
         e.preventDefault()
         replyToThread(user, reply, currentThread)
 			.then(res => {
-                triggerRefresh()
-                socket.emit('resetThreads')
+                setRefreshReplies(prev => !prev)
+				socket.emit('resetReplies')
             })
             // if there is an error tell the user about it
             .catch(() => {
@@ -45,14 +45,16 @@ const ShowThreadModal = (props) => {
                     variant: 'danger'
                 })
             })
-        console.log('reply on submit: ', reply)
+        // console.log('reply on submit: ', reply)
     }
 
+    console.log('replies in showThreadmodal: ', replies)
 
-    if (currentThread) {
+
+    if (currentThread && replies) {
         // console.log('currentThread in modal: ', currentThread)
         
-        const replies = currentThread.replies.map((reply, i) => {
+        const repliesArray = replies.map((reply, i) => {
             return (
                 // <p key="i">{reply.content}</p>
                 <a href="#" className="list-group-item list-group-item-action" key="i">
@@ -80,7 +82,7 @@ const ShowThreadModal = (props) => {
                     </div>
                     <p className="mb-1">{currentThread.firstMessage.content}</p>
                     </a>
-                        {replies}
+                        {repliesArray}
                     </div>
                     <ReplyForm reply={reply} handleChange={onChange} handleSubmit={onSubmit} />
                 </Modal.Body>
