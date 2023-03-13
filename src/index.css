@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&family=Hind+Vadodara:wght@300&family=Nunito:wght@700&display=swap');
+
 html {
-  background-color: #212121;
+  background-color: #022C43;
 }
 
 body {
@@ -52,4 +54,33 @@ code {
 
 #channel-thread-list-group {
   border-radius: 0!important;
+}
+
+#sign-in-container {
+  background-color: #053F5E!important;
+  border: 1px solid #115173!important;
+}
+
+#sign-in-header {
+  text-align: center;
+  margin-top: 1rem;
+  font-family: 'Nunito', sans-serif;
+  color: #ffffff;
+  font-size: 2.5rem;
+}
+
+.sign-in-label {
+  font-family: 'Nunito', sans-serif!important;
+  color: #FFD700;
+  font-size: 1.15rem;
+}
+
+.sign-in-control {
+  font-family: 'Hind Vadodara', sans-serif!important;
+  background-color: #022C43!important;
+  border: 1px solid #115173!important;
+}
+
+.sign-in-control::placeholder {
+  color: #ffffff!important;
 }

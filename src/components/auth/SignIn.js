@@ -45,13 +45,13 @@ const SignIn = (props) => {
                 //     navigate('/create-profile')
                 // }
             })
-			.then(() =>
-				msgAlert({
-					heading: 'Sign In Success',
-					message: messages.signInSuccess,
-					variant: 'success',
-				})
-			)
+			// .then(() =>
+			// 	msgAlert({
+			// 		heading: 'Sign In Success',
+			// 		message: messages.signInSuccess,
+			// 		variant: 'success',
+			// 	})
+			// )
 			.then(() => navigate('/'))
 			.catch((error) => {
                 setEmail('')
@@ -65,13 +65,14 @@ const SignIn = (props) => {
 	}
 
     return (
-        <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Sign In</h3>
+        <div className='row' style={{backgroundColor: '#022C43'}}>
+            <div className='col-sm-10 col-md-8 mx-auto mt-5' id="sign-in-container">
+                <h1 id="sign-in-header">Sign In</h1>
                 <Form onSubmit={onSignIn}>
-                    <Form.Group controlId='email'>
-                        <Form.Label>Email address</Form.Label>
+                    <Form.Group controlId='email' className="container">
+                        <Form.Label className='sign-in-label'>Email address</Form.Label>
                         <Form.Control
+                            className='sign-in-control'
                             required
                             type='email'
                             name='email'
@@ -80,9 +81,10 @@ const SignIn = (props) => {
                             onChange={e => setEmail(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group controlId='password'>
-                        <Form.Label>Password</Form.Label>
+                    <Form.Group controlId='password' className="container mt-3">
+                        <Form.Label className='sign-in-label'>Password</Form.Label>
                         <Form.Control
+                            className='sign-in-control'
                             required
                             name='password'
                             value={password}
@@ -91,9 +93,11 @@ const SignIn = (props) => {
                             onChange={e => setPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
-                        Submit
-                    </Button>
+                    <div className="container d-flex justify-content-center my-3">
+                        <Button variant='primary' type='submit'>
+                            Submit
+                        </Button>
+                    </div>
                 </Form>
             </div>
         </div>

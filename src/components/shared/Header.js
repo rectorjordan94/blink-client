@@ -13,7 +13,9 @@ const linkStyle = {
 const brandStyle = {
     color: '#000000',
 	textDecoration: 'none',
-	fontWeight: '900'
+	fontWeight: '400',
+	fontFamily: 'Faster One',
+	fontSize: '1.75rem',
 }
 const authenticatedOptions = (
 	<>
