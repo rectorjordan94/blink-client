@@ -54,6 +54,9 @@ const Home = (props) => {
 			let threadString = threadIds.toString()
 			getThreadsFromChannels(user, threadString)
 				.then(res => setThreads(res.data.threads))
+				.then(() => { 
+					threadScroll.scrollTo({ top: threadScroll.scrollHeight, left: 0, behavior: 'instant'})
+				})
 				.catch(err => {
 					setError(true)
 				})
@@ -84,6 +87,7 @@ const Home = (props) => {
 						addThreadToChannel(user, currentChannel._id, res.data.thread._id)
 							.then(res => {
 							// setMessage("")
+							// window.scrollTo(0, threadScroll.scrollTo({ top: 100000, left: 0, behavior: 'instant'}))
 							message.content = ''
 							setRefreshThreads(prev => !prev)
 							socket.emit('resetThreads')
@@ -113,7 +117,7 @@ const Home = (props) => {
                 })
             })
     }
-
+	const threadScroll = document.getElementById("channel-thread-list-group")
 
 	return (
 		<div className="container-fluid px-0" >
