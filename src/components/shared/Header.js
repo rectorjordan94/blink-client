@@ -8,7 +8,11 @@ const linkStyle = {
     color: '#000000',
 	textDecoration: 'none',
 	fontWeight: '500',
-	margin: '0 .25rem'
+	margin: '0 .25rem',
+	fontFamily: 'Nunito',
+	fontSize: '1.1rem',
+	display: 'block',
+	whiteSpace: 'nowrap'
 }
 const brandStyle = {
     color: '#000000',
@@ -16,6 +20,7 @@ const brandStyle = {
 	fontWeight: '400',
 	fontFamily: 'Faster One',
 	fontSize: '1.75rem',
+	marginLeft: '.25rem'
 }
 
 const authenticatedOptions = (
@@ -56,7 +61,7 @@ const alwaysOptions = (
 
 const noProfile = (
 	<>
-		<NavDropdown title="Profile" align="end">
+		<NavDropdown title="Profile" align="end" className="header-dropdown">
 			<NavDropdown.Item>
 				<Link to='create-profile' style={linkStyle}>
 					Create Profile
@@ -69,7 +74,7 @@ const noProfile = (
 
 const profileExists = (
 	<>
-		<NavDropdown title="Profile" align="end">
+		<NavDropdown title="Profile" align="end" className="header-dropdown">
 			<NavDropdown.Item>
 				<Link to='profile' style={linkStyle}>
 					View Profile
@@ -89,9 +94,11 @@ const Header = ({ user, profile, msgAlert, channelId, setChannelId, refreshChann
                 BLINK
             </Link>
 		</Navbar.Brand>
-		{user && (
-			<ChannelSearch user={user} msgAlert={msgAlert} channelId={channelId} setChannelId={setChannelId} refreshChannels={refreshChannels} />
-		)}
+		<div className="container d-flex justify-content-center">
+			{user ? (
+				<ChannelSearch user={user} msgAlert={msgAlert} channelId={channelId} setChannelId={setChannelId} refreshChannels={refreshChannels} />
+			) : null}
+		</div>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
 			<Nav className='ms-auto me-2 d-flex align-items-center'>

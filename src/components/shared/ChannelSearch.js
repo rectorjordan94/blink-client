@@ -2,9 +2,8 @@ import { Form } from 'react-bootstrap'
 import { useState, useEffect, useReducer } from 'react'
 
 import { Typeahead } from 'react-bootstrap-typeahead'
-
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { getAllChannels } from '../../api/channels'
-
 
 const ChannelSearch = (props) => {
     const { user, channelId, setChannelId, msgAlert, refreshChannels } = props
@@ -48,7 +47,7 @@ const ChannelSearch = (props) => {
 
     return (
         <>
-            <Form.Group>
+            <Form.Group id="channel-search-form">
                 <Typeahead
                     id="channel-search"
                     labelKey="name"

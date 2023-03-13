@@ -18,6 +18,12 @@ code {
     monospace;
 }
 
+.form-control {
+  background-color: #e4c200!important;
+  border: 1px solid #fee55a!important;
+  color: #000000!important;
+}
+
 #nav-bar {
   background-color: #FFD700!important;
   /* color: #000000!important; */
@@ -126,4 +132,27 @@ code {
   color: #FFD700;
   font-size: 1.1rem;
   text-decoration: none!important;
+}
+
+#channel-search-form {
+  width: 60%!important;
+}
+
+#channel-search {
+  width: 100%!important;
+  background-color: #FFD700!important;
+  background-color: #e4c200!important;
+  font-family: 'Nunito', sans-serif;
+}
+
+.dropdown-toggle {
+  color: #000000!important;
+  font-family: 'Nunito', sans-serif!important;
+  font-size: 1.1rem!important;
+  /* background-color: #FFD700!important; */
+}
+
+#navbar {
+  font-family: 'Nunito', sans-serif!important;
+  font-size: 1.1rem!important;
 }
