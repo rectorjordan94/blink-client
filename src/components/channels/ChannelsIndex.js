@@ -32,7 +32,6 @@ const ChannelsIndex = (props) => {
         )
     })
 
-
     return (
         <div className="list-group">
             {channelButtons}
