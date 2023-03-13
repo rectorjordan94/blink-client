@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getAllChannels, getOneChannel } from '../../api/channels'
+import { getMyChannels, getOneChannel } from '../../api/channels'
 
 import Button from 'react-bootstrap/Button'
 
@@ -15,7 +15,7 @@ const ChannelsIndex = (props) => {
 
     useEffect(() => {
         if (user) {
-            getAllChannels(user)
+            getMyChannels(user)
                 .then(res => setChannels(res.data.channels))
                 .catch(err => {
                     setError(true)

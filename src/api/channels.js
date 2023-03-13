@@ -78,3 +78,13 @@ export const addOrRemoveMember = (user, channel, addOrRemove, newMember) => {
         },
     })
 }
+
+export const getMyChannels = (user) => {
+    return axios({
+        url: `${apiUrl}/channels/mine`,
+        method: 'GET',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+    })
+}
