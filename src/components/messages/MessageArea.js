@@ -92,7 +92,26 @@ const MessageArea = (props) => {
             <p>No threads yet...</p>
         )
     }
-        
+    
+    const convertTimestamps = (timestamp) => {
+        // Converting timestamps from mongo to readable format
+        const formatted = new Date(timestamp)
+        const date = formatted.getDate()
+        const month = formatted.getMonth() + 1;
+        const year = formatted.getFullYear()
+        let hours = formatted.getHours()
+        let minutes = formatted.getMinutes()
+        if (minutes < 10) {
+            minutes = '0' + minutes
+        } else if (hours < 12) {
+            minutes = minutes + 'am'
+        } else if (hours > 12) {
+            hours = hours - 12
+            minutes = minutes + 'pm'
+        }
+        return `${month}/${date}/${year} ${hours}:${minutes}`
+    }
+
     const threadListItems = threads.map((thread, i) => (
         <a href="#" className="list-group-item list-group-item-action channel-threads" onClick={onClick} id={thread._id} key={i}>
                 <div style={{pointerEvents: 'none'}} className="d-flex w-100 justify-content-between align-items-center">
@@ -102,7 +121,7 @@ const MessageArea = (props) => {
             </div>
             <p className="mb-1 text-white" style={{pointerEvents: 'none'}}>{thread.firstMessage.content}</p>
                 <div className="d-flex w-100 justify-content-between align-items-center">
-                    <small className="text-muted" style={{ pointerEvents: 'none' }}>3 days ago</small>
+                    <small className="text-muted" style={{ pointerEvents: 'none' }}>{convertTimestamps(thread.createdAt)}</small>
                     {user.id === thread.owner ?
                             <Button variant='danger' value={thread._id} onClick={deleteThread}>X</Button> : null }
                 </div>
@@ -137,6 +156,7 @@ const MessageArea = (props) => {
                 setCurrentThread={setCurrentThread}
                 setRefreshReplies={setRefreshReplies}
                 socket={socket}
+                convertTimestamps={convertTimestamps}
             />
         </div>
     )

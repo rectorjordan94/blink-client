@@ -6,7 +6,7 @@ import { replyToThread, removeReply } from '../../api/messages'
 import ReplyForm from '../shared/ReplyForm'
 
 const ShowThreadModal = (props) => {
-    const { user, show, handleClose, msgAlert, setRefreshReplies, currentThread, socket, replies } = props
+    const { user, show, handleClose, msgAlert, setRefreshReplies, currentThread, socket, replies, convertTimestamps } = props
 
     // const [channel, setChannel] = useState(props.currentChannel)
     // const [currentThread, setCurrentThread] = useState(null)
@@ -96,11 +96,14 @@ const ShowThreadModal = (props) => {
                 <a href="#" className="list-group-item list-group-item" key={i}>
                     <div className="d-flex w-100 justify-content-between">
                         <h5 className="mb-1">{reply.owner.profile.username}</h5>
-                        {/* <small>3 days ago</small> */}
-                        {user.id === reply.owner._id ?
-                            <Button variant='danger' value={reply._id} onClick={deleteReply}>X</Button> : <small>3 days ago</small>}
+                        <small>{convertTimestamps(reply.createdAt)}</small>
+                        
                     </div>
-                    <p className="mb-1">{reply.content}</p>
+                    <p className="mb-0">{reply.content}</p>
+                    <div className="d-flex justify-content-end">
+                        {user.id === reply.owner._id ?
+                            <Button variant='danger' value={reply._id} onClick={deleteReply}>X</Button> : null}
+                    </div>
                     
                 </a>
             )
@@ -117,7 +120,7 @@ const ShowThreadModal = (props) => {
                         <a href="#" className="list-group-item list-group-item active" key={123}>
                         <div className="d-flex w-100 justify-content-between">
                             <h5 className="mb-1">{currentThread.author.username}</h5>
-                            <small>3 days ago</small>
+                            <small>{convertTimestamps(currentThread.createdAt)}</small>
                         </div>
                         <p className="mb-1">{currentThread.firstMessage.content}</p>
                         </a>
