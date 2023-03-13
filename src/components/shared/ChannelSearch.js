@@ -1,10 +1,14 @@
 import { Form } from 'react-bootstrap'
 import { useState, useEffect, useReducer } from 'react'
+
 import { Typeahead } from 'react-bootstrap-typeahead'
+
 import { getAllChannels } from '../../api/channels'
+
 
 const ChannelSearch = (props) => {
     const { user, channelId, setChannelId, msgAlert, refreshChannels } = props
+    
     const [selected, setSelected] = useState([])
     const [options, setOptions] = useState(null)
 

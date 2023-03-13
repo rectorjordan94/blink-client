@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 // import { getThreadsFromChannels } from '../../api/threads'
 // import { createMessage } from '../../api/messages'
 // import { createThread } from '../../api/threads'
 // import { addThreadToChannel } from '../../api/channels'
-import { getOneThread } from '../../api/threads'
+import { getOneThread, removeThreads } from '../../api/threads'
 import MessageForm from '../shared/MessageForm'
 import ShowThreadModal from '../threads/ShowThreadModal'
 
@@ -50,8 +51,6 @@ const MessageArea = (props) => {
     useEffect(() => {
         // console.log('USE EFFECT 4 RAN')
         if (currentThread) {
-            // console.log('currentThread in USE EFFECT 4: ', currentThread)
-            // console.log('currentthread.replies: ', currentThread.replies)
             setReplies(currentThread.replies)
             // setThreadModalShow(true)
         }
@@ -64,6 +63,23 @@ const MessageArea = (props) => {
             setThreadModalShow(true)
         }
     }, [replies])
+
+    const deleteThread = (e) => {
+        e.preventDefault()
+        // console.log(e.target.value)
+        removeThreads(user, e.target.value, currentChannel._id)
+            .then(() => {
+                setRefreshReplies(prev => !prev)
+                socket.emit('resetReplies')
+            })
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error',
+                    message: 'unable to delete reply',
+                    variant: 'danger'
+                })
+            }) 
+    }
 
     if (!currentChannel) {
         return (
@@ -80,12 +96,15 @@ const MessageArea = (props) => {
     const threadListItems = threads.map((thread, i) => (
         <a href="#" className="list-group-item list-group-item-action channel-threads" onClick={onClick} id={thread._id} key={i}>
                 <div style={{pointerEvents: 'none'}} className="d-flex w-100 justify-content-between align-items-center">
-                    <h5 className="mb-1 text-primary" style={{pointerEvents: 'none'}}>{thread.author.username ? thread.author.username : thread.owner.email}</h5>
+                    <h5 className="mb-1 text-primary" style={{ pointerEvents: 'none' }}>{thread.author.username ? thread.author.username : thread.owner.email}</h5>
+                    
                     <small className="badge bg-warning rounded-pill" style={{pointerEvents: 'none'}}>{thread.replies.length}</small>
-                </div>
-                <div style={{pointerEvents: 'none'}}>
-                    <p className="mb-1 text-white" style={{pointerEvents: 'none'}}>{thread.firstMessage.content}</p>
-                    <small className="text-muted" style={{pointerEvents: 'none'}}>3 days ago</small>
+            </div>
+            <p className="mb-1 text-white" style={{pointerEvents: 'none'}}>{thread.firstMessage.content}</p>
+                <div className="d-flex w-100 justify-content-between align-items-center">
+                    <small className="text-muted" style={{ pointerEvents: 'none' }}>3 days ago</small>
+                    {user.id === thread.owner ?
+                            <Button variant='danger' value={thread._id} onClick={deleteThread}>X</Button> : null }
                 </div>
             </a>
         ))

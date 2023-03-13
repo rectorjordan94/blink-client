@@ -34,3 +34,13 @@ export const getOneThread = (user, threadId) => {
         }
     })
 }
+
+export const removeThreads = (user, threadId, channelId) => {
+    return axios({
+        url: `${apiUrl}/threads/${threadId}/${channelId}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
