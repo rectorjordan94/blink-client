@@ -35,7 +35,8 @@ const ShowThreadModal = (props) => {
         replyToThread(user, reply, currentThread)
 			.then(res => {
                 setRefreshReplies(prev => !prev)
-				socket.emit('resetReplies')
+                socket.emit('resetReplies')
+                setReply("")
             })
             // if there is an error tell the user about it
             .catch(() => {
@@ -116,7 +117,7 @@ const ShowThreadModal = (props) => {
                     <Modal.Title>Reply to Thread</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className="list-group mx-0 w-100" style={{ overflowY: 'scroll', maxHeight: '300px' }} id="replies-list-group">
+                    <div className="list-group mx-0 w-100" style={{ overflowY: 'scroll', maxHeight: '400px' }} id="replies-list-group">
                         <a href="#" className="list-group-item list-group-item active" key={123}>
                         <div className="d-flex w-100 justify-content-between">
                             <h5 className="mb-1">{currentThread.author.username}</h5>

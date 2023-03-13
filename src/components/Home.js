@@ -83,6 +83,8 @@ const Home = (props) => {
 					.then(res => {
 						addThreadToChannel(user, currentChannel._id, res.data.thread._id)
 							.then(res => {
+							// setMessage("")
+							message.content = ''
 							setRefreshThreads(prev => !prev)
 							socket.emit('resetThreads')
 						})
