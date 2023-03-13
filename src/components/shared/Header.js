@@ -18,28 +18,18 @@ const brandStyle = {
 	fontSize: '1.75rem',
 }
 
-const noProfile = (
-	<>
-		<Nav.Item>
-			<Link to='create-profile' style={linkStyle}>
-				Create Profile
-			</Link>
-		</Nav.Item>
-	</>
-)
-
 const authenticatedOptions = (
 	<>
-		<Nav.Item>
+		<NavDropdown.Item>
 			<Link to='change-password' style={linkStyle}>
 				Change Password
 			</Link>
-		</Nav.Item>
-		<Nav.Item>
+		</NavDropdown.Item>
+		<NavDropdown.Item>
 			<Link to='sign-out' style={linkStyle}>
 				Sign Out
 			</Link>
-		</Nav.Item>
+		</NavDropdown.Item>
 	</>
 )
 
@@ -50,7 +40,7 @@ const unauthenticatedOptions = (
         </Nav.Item>
         <Nav.Item>
 		    <Link to='sign-in' style={linkStyle}>Sign In</Link>
-        </Nav.Item>
+		</Nav.Item>
 	</>
 )
 
@@ -64,24 +54,29 @@ const alwaysOptions = (
 	</>
 )
 
+const noProfile = (
+	<>
+		<NavDropdown title="Profile" align="end">
+			<NavDropdown.Item>
+				<Link to='create-profile' style={linkStyle}>
+					Create Profile
+				</Link>
+			</NavDropdown.Item>
+			{authenticatedOptions}
+		</NavDropdown>
+	</>
+)
+
 const profileExists = (
 	<>
-		<Nav.Item>
-			<Link to='profile' style={linkStyle}>
-				Profile
-			</Link>
-		</Nav.Item>
-		{/* <NavDropdown title="Dropdown">
+		<NavDropdown title="Profile" align="end">
+			<NavDropdown.Item>
+				<Link to='profile' style={linkStyle}>
+					View Profile
+				</Link>
+			</NavDropdown.Item>
 			{authenticatedOptions}
-			<NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-			<NavDropdown.Item href="#action4">
-				Another action
-			</NavDropdown.Item>
-			<NavDropdown.Divider />
-			<NavDropdown.Item href="#action5">
-				Something else here
-			</NavDropdown.Item>
-		</NavDropdown> */}
+		</NavDropdown>
 	</>
 )
 
@@ -100,15 +95,10 @@ const Header = ({ user, profile, msgAlert, channelId, setChannelId, refreshChann
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
 			<Nav className='ms-auto me-2 d-flex align-items-center'>
-				{profile ? profile && ( <span className="navbar-text mx-2">Welcome, {profile.username}</span>) : user && ( <span className="navbar-text mx-2">Welcome, {user.email} </span>)}
-				{/* {user && (
-					<span className='navbar-text mr-2'>Welcome, {user.email}</span>
-				)} */}
-				{alwaysOptions}
-				{user ? authenticatedOptions : unauthenticatedOptions}
-				{profile ? profileExists : null}
-				{!profile ? null : null}
+				{user && profile ? profileExists : null}
 				{user && !profile ? noProfile : null}
+				{alwaysOptions}
+				{!user ? unauthenticatedOptions : null}
 			</Nav>
 		</Navbar.Collapse>
 	</Navbar>
