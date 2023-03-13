@@ -12,7 +12,7 @@ import ShowThreadModal from '../threads/ShowThreadModal'
 
 const MessageArea = (props) => {
 
-    const { currentChannel, threads, user, msgAlert, triggerRefresh, socket, message, handleChange, handleSubmit } = props
+    const { currentChannel, threads, user, msgAlert, setRefreshThreads, socket, message, handleChange, handleSubmit } = props
 
     const [error, setError] = useState(false)
 
@@ -87,9 +87,11 @@ const MessageArea = (props) => {
                 show={threadModalShow}
                 handleClose={() => setThreadModalShow(false)}
                 msgAlert={msgAlert}
-                // triggerRefresh={() => setUpdated(prev => !prev)}
+                triggerRefresh={() => setRefreshThreads(prev => !prev)}
                 currentThread={currentThread}
                 setCurrentThread={setCurrentThread}
+                socket={socket}
+
             />
         </div>
     )

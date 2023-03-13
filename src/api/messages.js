@@ -14,3 +14,17 @@ export const createMessage = (user, newMessage) => {
         }
     })
 }
+
+export const replyToThread = (user, message, thread) => {
+    console.log('user in axios call: ', user)
+    return axios({
+        url: `${apiUrl}/messages/reply/${thread._id}`,
+        method: 'POST',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: {
+            message: message
+        }
+    })
+}
