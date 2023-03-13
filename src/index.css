@@ -42,6 +42,7 @@ code {
   /* border-bottom: 1px solid #115173!important; */
   border: none!important;
   border-radius: 0!important;
+  font-family: 'Nunito', sans-serif;
 }
 
 #channel-header {
@@ -155,4 +156,20 @@ code {
 #navbar {
   font-family: 'Nunito', sans-serif!important;
   font-size: 1.1rem!important;
+}
+
+#my-channels-header {
+  color:#ffffff;
+  font-family: 'Nunito', sans-serif!important;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+#create-channel-button {
+  display: inline!important;
+  font-family: 'Nunito', sans-serif!important;
+  text-decoration: none!important;
+  margin-left: .5rem;
+  font-size: 1.5rem;
+  color: #e4c200!important;
 }

@@ -26,8 +26,8 @@ const ChannelsIndex = (props) => {
     const channelButtons = channels.map((channel, i) => {
         return (
             // <Button key={i}>{channel.name}</Button>
-            <button type="button" key={i} className="list-group-item list-group-item-action channel-buttons" onClick={onClick} id={channel._id}>
-                    #{channel.name}
+            <button type="button" key={i} className="list-group-item list-group-item-action channel-buttons p-0 mt-1" onClick={onClick} id={channel._id}>
+                    # {channel.name}
             </button>
         )
     })

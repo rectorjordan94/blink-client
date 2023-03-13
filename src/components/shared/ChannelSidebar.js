@@ -12,19 +12,14 @@ const ChannelSidebar = (props) => {
     // const [channelId, setChannelId] = useState("")
 
     return (
-        <div className="col-3 bg-primary" id="channel-sidebar">
-            <h5>Channels</h5>
+        <div className="col-3 bg-primary d-flex flex-column align-items-center" id="channel-sidebar">
+            <div className="container d-flex justify-content-center align-items-center mt-3">
+                <p id="my-channels-header">My Channels</p>
+                <Link to='create-channel' className="text-white" id="create-channel-button">
+                    +
+                </Link>
+            </div>
             <ChannelsIndex msgAlert={msgAlert} user={user} channelId={channelId} onClick={onClick} />
-            {/* <NewChannelModal
-                msgAlert={msgAlert}
-                user={user}
-                show={modalShow}
-                handleClose={() => setModalShow(false)}
-                triggerRefresh={triggerRefresh}
-            /> */}
-            <Link to='create-channel' className="text-white">
-				Add New Channel
-			</Link>
         </div>
     )
 }
