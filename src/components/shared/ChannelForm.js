@@ -5,7 +5,7 @@ const ChannelForm = (props) => {
 
     return (
         <Container className='d-flex flex-column' id="create-channel-container">
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} className='auth-form'>
                 <h1 className='text-center auth-header'>{heading}</h1>
                 <Form.Group className='container'>
                     <Form.Label className='auth-label'>Name:</Form.Label>

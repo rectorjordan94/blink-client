@@ -200,6 +200,7 @@ code {
 
 #channel-header-sidebar {
   border-bottom: 1px solid #115173;
+  margin-bottom: .5rem;
 }
 
 #create-channel-button {
@@ -372,7 +373,7 @@ code {
 }
 
 #edit-channel-body .auth-control {
-  color: rgba(255, 255, 255, .4)!important;
+  color: #ffffff!important;
 }
 
 #msg-area-channel-description {
@@ -549,4 +550,16 @@ code {
 
 .reply-form-container {
   border-top: 1px solid #115173;
+}
+
+.rbt-input-main.form-control.rbt-input{
+  color: #000000!important;
+}
+
+.form-control {
+  color: #ffffff!important;
+}
+
+#member-search-form .form-control {
+  color: #ffffff!important;
 }
