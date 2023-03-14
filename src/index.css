@@ -70,6 +70,7 @@ code {
 .auth-container {
   background-color: #053F5E!important;
   border: 1px solid #115173!important;
+  border-radius: 5px!important;
 }
 
 .auth-header {
@@ -225,3 +226,17 @@ code {
   background-color: #FFD700!important;
 }
 
+.dropdown-item:hover {
+  background-color: #e4c200!important;
+}
+/* fix this later, not exactly what I'm going for, will work for now */
+#channel-search:nth-child(n):hover {
+  background-color: #FFD700!important;
+}
+
+#create-channel-container {
+  background-color: #053F5E!important;
+  padding: 1rem;
+  border: 1px solid #115173!important;
+  border-radius: 5px!important;
+}

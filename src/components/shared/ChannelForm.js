@@ -4,11 +4,13 @@ const ChannelForm = (props) => {
     const { channel, handleChange, handleSubmit } = props
 
     return (
-        <Container>
+        <Container className='mt-5 d-flex flex-column' id="create-channel-container">
             <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                    <Form.Label>Name:</Form.Label>
+                <h1 className='text-center auth-header'>New Channel</h1>
+                <Form.Group className='container'>
+                    <Form.Label className='auth-label'>Name:</Form.Label>
                     <Form.Control
+                        className='auth-control'
                         placeholder="What would you like to name the channel?"
                         name="name"
                         id="name"
@@ -17,9 +19,10 @@ const ChannelForm = (props) => {
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Form.Group>
-                    <Form.Label>Description:</Form.Label>
+                <Form.Group className='container mt-3'>
+                    <Form.Label className='auth-label'>Description:</Form.Label>
                     <Form.Control
+                        className='auth-control'
                         placeholder="What's the channel about? Who is it for?"
                         name="description"
                         id="name"
@@ -28,7 +31,10 @@ const ChannelForm = (props) => {
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Button type="submit">Submit</Button>
+                <div className="container d-flex justify-content-center mt-3">
+                    <Button type="submit" className='auth-submit'>Create</Button>
+                </div>
+                
             </Form>
         </Container>
     )
