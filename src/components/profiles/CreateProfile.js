@@ -57,13 +57,14 @@ const CreateProfile = (props) => {
     //! REMOVED required ATTRIBUTE FROM ALL FORM CONTROLS, MAY NEED TO ADD BACK LATER IF THERE ARE ISSUES
 
     return (
-        <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Sign Up</h3>
+        <div className='row mx-0 w-100'>
+            <div className='col-sm-10 col-md-8 mx-auto mt-5 d-flex flex-column auth-container'>
+                <h3 className='auth-header'>Create Profile</h3>
                 <Form onSubmit={onProfileCreate}>
-                    <Form.Group controlId='username'>
-                        <Form.Label>Username</Form.Label>
+                    <Form.Group controlId='username' className='container'>
+                        <Form.Label className='auth-label'>Username</Form.Label>
                         <Form.Control
+                            className='auth-control'
                             type='text'
                             name='username'
                             value={username}
@@ -71,9 +72,10 @@ const CreateProfile = (props) => {
                             onChange={e => setUsername(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group controlId='password'>
-                        <Form.Label>Full Name</Form.Label>
+                    <Form.Group controlId='password' className='container mt-3'>
+                        <Form.Label className='auth-label'>Full Name</Form.Label>
                         <Form.Control
+                            className='auth-control'
                             name='fullName'
                             value={fullName}
                             type='text'
@@ -81,9 +83,10 @@ const CreateProfile = (props) => {
                             onChange={e => setFullName(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group controlId='passwordConfirmation'>
-                        <Form.Label>Location</Form.Label>
+                    <Form.Group controlId='passwordConfirmation' className='container mt-3'>
+                        <Form.Label className='auth-label'>Location</Form.Label>
                         <Form.Control
+                            className='auth-control'
                             name='location'
                             value={location}
                             type='text'
@@ -91,9 +94,10 @@ const CreateProfile = (props) => {
                             onChange={e => setLocation(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group controlId='passwordConfirmation'>
-                        <Form.Label>Pronouns</Form.Label>
+                    <Form.Group controlId='passwordConfirmation' className='container mt-3'>
+                        <Form.Label className='auth-label'>Pronouns</Form.Label>
                         <Form.Control
+                            className='auth-control'
                             name='pronouns'
                             value={pronouns}
                             type='text'
@@ -101,9 +105,11 @@ const CreateProfile = (props) => {
                             onChange={e => setPronouns(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
-                        Submit
-                    </Button>
+                    <div className="container d-flex justify-content-center my-3">
+                        <Button variant='primary' type='submit' className='auth-submit'>
+                            Submit
+                        </Button>
+                    </div>
                 </Form>
             </div>
         </div>
