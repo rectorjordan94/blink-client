@@ -56,13 +56,14 @@ const SignUp = (props) => {
 
 
     return (
-        <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Sign Up</h3>
+        <div className='row mx-0 w-100'>
+            <div className='col-sm-10 col-md-8 mx-auto mt-5 d-flex flex-column auth-container'>
+                <h3 className='auth-header'>Sign Up</h3>
                 <Form onSubmit={onSignUp}>
-                    <Form.Group controlId='email'>
-                        <Form.Label>Email address</Form.Label>
+                    <Form.Group controlId='email' className='container'>
+                        <Form.Label className='auth-label'>Email address</Form.Label>
                         <Form.Control
+                            className='auth-control'
                             required
                             type='email'
                             name='email'
@@ -71,9 +72,10 @@ const SignUp = (props) => {
                             onChange={e => setEmail(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group controlId='password'>
-                        <Form.Label>Password</Form.Label>
+                    <Form.Group controlId='password' className='container mt-3'>
+                        <Form.Label className='auth-label'>Password</Form.Label>
                         <Form.Control
+                            className='auth-control'
                             required
                             name='password'
                             value={password}
@@ -82,9 +84,10 @@ const SignUp = (props) => {
                             onChange={e => setPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group controlId='passwordConfirmation'>
-                        <Form.Label>Password Confirmation</Form.Label>
+                    <Form.Group controlId='passwordConfirmation' className='container mt-3'>
+                        <Form.Label className='auth-label'>Password Confirmation</Form.Label>
                         <Form.Control
+                            className='auth-control'
                             required
                             name='passwordConfirmation'
                             value={passwordConfirmation}
@@ -93,9 +96,11 @@ const SignUp = (props) => {
                             onChange={e => setPasswordConfirmation(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
-                        Submit
-                    </Button>
+                    <div className="container d-flex justify-content-center my-3">
+                        <Button variant='primary' type='submit' className='auth-submit'>
+                            Submit
+                        </Button>
+                    </div>
                 </Form>
             </div>
         </div>
