@@ -35,7 +35,7 @@ code {
 #channel-sidebar {
   background-color: #053F5E!important;
   border: 1px solid #115173!important;
-  height: 90vh;
+  height: 92.7vh;
   /* border-radius: 0!important; */
 }
 
@@ -57,10 +57,12 @@ code {
   background-color: #022C43!important;
   border: 1px solid #115173!important;
   border-left: none!important;
+  padding: .5rem 1rem 1rem 1rem!important;
 }
 
 #channel-name {
   text-decoration: none;
+  font-family: 'Nunito', sans-serif;
 }
 
 #channel-name:hover {
@@ -71,12 +73,16 @@ code {
 .channel-threads {
   background-color: #022C43!important;
   border-radius: 0!important;
-  border: 1px solid #115173!important;
+  border-bottom: 1px solid #115173!important;
   border-left: none!important;
 }
 
 #channel-thread-list-group {
   border-radius: 0!important;
+}
+
+#channel-thread-list-group a:last-child {
+  border: none!important;
 }
 
 .auth-container {
@@ -110,7 +116,7 @@ code {
   background-color: #FFD700!important;
   color: #000000!important;
   /* border: none!important; */
-  border: 1px solid #FFD700!important;
+  border: 1px solid #e4c200!important;
   font-family: 'Nunito', sans-serif!important;
   font-size: 1.15rem!important;
 }
@@ -367,4 +373,88 @@ code {
 
 #edit-channel-body .auth-control {
   color: rgba(255, 255, 255, .4)!important;
+}
+
+#msg-area-channel-description {
+  color: #115173;
+  margin-bottom: 0!important;
+  font-family: 'Hind Vadodara', sans-serif!important;
+  font-size: 1.1rem!important;
+}
+
+#message-input-container {
+  border-top: 1px solid #115173;
+  font-size: 1.1rem;
+  padding: 1rem;
+}
+
+.thread-username {
+  font-family: 'Nunito', sans-serif!important;
+  color: #FFD700!important;
+  margin: 0!important;
+}
+
+.thread-badge {
+  color: #022C43!important;
+  background-color: #115173!important;
+  font-family: 'Nunito', sans-serif!important;
+  font-size: .9rem!important;
+  padding: .15rem .45rem!important;
+}
+
+.thread-content {
+  font-family: 'Hind Vadodara', sans-serif!important;
+  color: #ffffff!important;
+}
+
+.thread-datetime {
+  font-family: 'Hind Vadodara', sans-serif!important;
+  color: #115173!important;
+  font-size: 1rem!important;
+}
+
+.thread-delete {
+  padding: 0!important;
+  font-family: 'Nunito', sans-serif!important;
+  background-color: #022C43!important;
+  border: none!important;
+  color:#115173!important;
+  font-size: 1rem!important;
+}
+
+.thread-delete:hover {
+  color:#FFD700!important;
+}
+
+#channel-thread-list-group::-webkit-scrollbar {
+  width: 1rem;
+  border-left: 1px solid #115173;
+  background-color: #012437;
+}
+
+#channel-thread-list-group::-webkit-scrollbar-thumb {
+  background-color: #115173;
+  border-radius: 25px;
+}
+
+#message-form-group #content {
+  background-color: #115173!important;
+  border: 1px solid #1b6288!important;
+  color: #ffffff!important;
+  font-family: 'Hind Vadodara', sans-serif!important;
+}
+
+#message-form-submit {
+  background-color: #115173;
+  border: 1px solid #115173!important;
+  color: #022C43;
+  font-family: 'Nunito', sans-serif!important;
+  font-size: 2.85rem;
+  padding-bottom: .6rem;
+  /* line-height: .5rem; */
+}
+
+#message-form-submit:hover {
+  background-color: #FFD700;
+  transform: all .8s;
 }
