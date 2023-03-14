@@ -41,7 +41,7 @@ const App = () => {
 	// if (profile) {
 	// 	console.log('profile: ', profile)
 	// }
-	
+
 	const clearUser = () => {
 		console.log('clear user ran')
 		setUser(null)

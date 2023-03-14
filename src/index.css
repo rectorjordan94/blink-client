@@ -340,3 +340,31 @@ code {
   border: 1px solid #115173!important;
   color: #ffffff!important
 }
+
+#edit-channel-modal {
+  background-color: #022C43!important;
+  border-radius: 5px!important;
+}
+
+#edit-channel-header {
+  background-color: #022C43!important;
+  border: 1px solid #115173!important;
+  border-radius: 5px!important;
+  color: #ffffff;
+  font-family: 'Nunito', sans-serif!important;
+  border-bottom: none!important;
+  border-bottom-left-radius: 0!important;
+  border-bottom-right-radius: 0!important;
+}
+
+#edit-channel-body {
+  background-color: #022C43!important;
+  border: 1px solid #115173!important;
+  border-radius: 5px!important;
+  border-top-left-radius: 0!important;
+  border-top-right-radius: 0!important;
+}
+
+#edit-channel-body .auth-control {
+  color: rgba(255, 255, 255, .4)!important;
+}

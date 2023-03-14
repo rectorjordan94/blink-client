@@ -50,15 +50,16 @@ const EditChannelModal = (props) => {
     }
 
     return (
-        <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
+        <Modal show={show} onHide={handleClose} id='edit-channel-modal'>
+            <Modal.Header closeButton id='edit-channel-header' closeVariant='white'>
                 <Modal.Title>Edit Channel</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body id='edit-channel-body'>
                 <ChannelForm
                     channel={channel}
                     handleChange={onChange}
                     handleSubmit={onSubmit}
+                    buttonText={'Edit'}
                 />
             </Modal.Body>
         </Modal>

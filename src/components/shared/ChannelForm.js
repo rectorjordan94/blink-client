@@ -1,12 +1,12 @@
 import { Form, Button, Container } from 'react-bootstrap'
 
 const ChannelForm = (props) => {
-    const { channel, handleChange, handleSubmit } = props
+    const { channel, handleChange, handleSubmit, heading, buttonText } = props
 
     return (
-        <Container className='mt-5 d-flex flex-column' id="create-channel-container">
+        <Container className='d-flex flex-column' id="create-channel-container">
             <Form onSubmit={handleSubmit}>
-                <h1 className='text-center auth-header'>New Channel</h1>
+                <h1 className='text-center auth-header'>{heading}</h1>
                 <Form.Group className='container'>
                     <Form.Label className='auth-label'>Name:</Form.Label>
                     <Form.Control
@@ -32,7 +32,7 @@ const ChannelForm = (props) => {
                     />
                 </Form.Group>
                 <div className="container d-flex justify-content-center mt-3">
-                    <Button type="submit" className='auth-submit'>Create</Button>
+                    <Button type="submit" className='auth-submit'>{buttonText}</Button>
                 </div>
                 
             </Form>

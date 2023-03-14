@@ -59,11 +59,15 @@ const CreateChannel = (props) => {
     }
 
     return (
-        <ChannelForm
+        <div className="container mt-5">
+            <ChannelForm
             channel={channel}
             handleChange={onChange}
             handleSubmit={onSubmit}
-        />
+            heading={'New Channel'}
+            buttonText={'Create'}
+            />
+        </div>
     )
 }
 
