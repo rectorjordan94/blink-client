@@ -66,13 +66,13 @@ const SignIn = (props) => {
 
     return (
         <div className='row mx-0' style={{backgroundColor: '#022C43', width: '100%'}}>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5' id="sign-in-container">
-                <h1 id="sign-in-header">Sign In</h1>
+            <div className='col-sm-10 col-md-8 mx-auto mt-5 auth-container'>
+                <h1 className="auth-header">Sign In</h1>
                 <Form onSubmit={onSignIn}>
                     <Form.Group controlId='email' className="container">
-                        <Form.Label className='sign-in-label'>Email address</Form.Label>
+                        <Form.Label className='auth-label'>Email address</Form.Label>
                         <Form.Control
-                            className='sign-in-control'
+                            className='auth-control'
                             required
                             type='email'
                             name='email'
@@ -82,9 +82,9 @@ const SignIn = (props) => {
                         />
                     </Form.Group>
                     <Form.Group controlId='password' className="container mt-3">
-                        <Form.Label className='sign-in-label'>Password</Form.Label>
+                        <Form.Label className='auth-label'>Password</Form.Label>
                         <Form.Control
-                            className='sign-in-control'
+                            className='auth-control'
                             required
                             name='password'
                             value={password}
@@ -94,7 +94,7 @@ const SignIn = (props) => {
                         />
                     </Form.Group>
                     <div className="container d-flex justify-content-center my-3">
-                        <Button variant='primary' type='submit'>
+                        <Button variant='primary' type='submit' className='auth-submit'>
                             Submit
                         </Button>
                     </div>

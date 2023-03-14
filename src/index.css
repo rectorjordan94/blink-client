@@ -67,12 +67,12 @@ code {
   border-radius: 0!important;
 }
 
-#sign-in-container {
+.auth-container {
   background-color: #053F5E!important;
   border: 1px solid #115173!important;
 }
 
-#sign-in-header {
+.auth-header {
   text-align: center;
   margin-top: 1rem;
   font-family: 'Nunito', sans-serif;
@@ -80,16 +80,25 @@ code {
   font-size: 2.5rem;
 }
 
-.sign-in-label {
+.auth-label {
   font-family: 'Nunito', sans-serif!important;
   color: #FFD700;
   font-size: 1.15rem;
 }
 
-.sign-in-control {
+.auth-control {
   font-family: 'Hind Vadodara', sans-serif!important;
   background-color: #022C43!important;
   border: 1px solid #115173!important;
+}
+
+.auth-submit {
+  padding: .5rem 3rem!important;
+  background-color: #FFD700!important;
+  color: #000000!important;
+  border: none!important;
+  font-family: 'Nunito', sans-serif!important;
+  font-size: 1.15rem!important;
 }
 
 .sign-in-control::placeholder {

@@ -8,14 +8,6 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 const ChangePassword = (props) => {
-	// constructor(props) {
-	// 	super(props)
-
-	// 	this.state = {
-	// 		oldPassword: '',
-	// 		newPassword: '',
-	// 	}
-	// }
     const [oldPassword, setOldPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
 
@@ -53,14 +45,15 @@ const ChangePassword = (props) => {
 
 
     return (
-        <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Change Password</h3>
+        <div className='row w-100'>
+            <div className='col-sm-10 col-md-8 mx-auto mt-5 d-flex flex-column auth-container'>
+                <h3 className='auth-header'>Change Password</h3>
                 <Form onSubmit={onChangePassword}>
-                    <Form.Group controlId='oldPassword'>
-                        <Form.Label>Old password</Form.Label>
+                    <Form.Group controlId='oldPassword' className='container'>
+                        <Form.Label className='auth-label'>Old password</Form.Label>
                         <Form.Control
                             required
+                            className='auth-control'
                             name='oldPassword'
                             value={oldPassword}
                             type='password'
@@ -68,9 +61,10 @@ const ChangePassword = (props) => {
                             onChange={e => setOldPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group controlId='newPassword'>
-                        <Form.Label>New Password</Form.Label>
+                    <Form.Group controlId='newPassword' className='container mt-3'>
+                        <Form.Label className='auth-label'>New Password</Form.Label>
                         <Form.Control
+                            className='auth-control'
                             required
                             name='newPassword'
                             value={newPassword}
@@ -79,9 +73,11 @@ const ChangePassword = (props) => {
                             onChange={e => setNewPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
-                        Submit
-                    </Button>
+                    <div className="container d-flex justify-content-center my-3">
+                        <Button variant='primary' type='submit' className='auth-submit'>
+                            Submit
+                        </Button>
+                    </div>
                 </Form>
             </div>
         </div>
