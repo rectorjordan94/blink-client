@@ -9,7 +9,7 @@ import { createThread } from '../api/threads'
 import { addThreadToChannel } from '../api/channels'
 
 const Home = (props) => {
-	const { msgAlert, user, socket, currentChannel, setCurrentChannel, channelId, setChannelId, profile } = props
+	const { msgAlert, user, socket, currentChannel, setCurrentChannel, channelId, setChannelId, profile, refreshMembers, setRefreshMembers } = props
 	// console.log('user in home', user)
 	// console.log('props in home', props)
 	const [error, setError] = useState(false)
@@ -122,7 +122,7 @@ const Home = (props) => {
 	return (
 		<div className="container-fluid px-0" >
 			<div className="row g-0 flex-nowrap">
-				<ChannelSidebar msgAlert={msgAlert} user={user} channelId={channelId} onClick={onClick} />
+				<ChannelSidebar msgAlert={msgAlert} user={user} channelId={channelId} onClick={onClick} refreshMembers={refreshMembers} socket={socket} setRefreshMembers={setRefreshMembers} />
 				<MessageArea
 					message={message}
 					handleChange={onChange}

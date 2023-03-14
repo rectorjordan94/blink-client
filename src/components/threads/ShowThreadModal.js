@@ -94,36 +94,35 @@ const ShowThreadModal = (props) => {
         const repliesArray = replies.map((reply, i) => {
             return (
                 // <p key="i">{reply.content}</p>
-                <a href="#" className="list-group-item list-group-item" key={i}>
+                <a href="#" className="list-group-item list-group-item replies-list-group-item channel-threads" key={i}>
                     <div className="d-flex w-100 justify-content-between">
-                        <h5 className="mb-1">{reply.owner.profile.username}</h5>
-                        <small>{convertTimestamps(reply.createdAt)}</small>
+                        <h5 className="mb-0 thread-username">{reply.owner.profile.username}</h5>
+                        {user.id === reply.owner._id ?
+                            <Button variant='danger' value={reply._id} onClick={deleteReply} className='thread-delete'>X</Button> : null}
+                        
                         
                     </div>
-                    <p className="mb-0">{reply.content}</p>
-                    <div className="d-flex justify-content-end">
-                        {user.id === reply.owner._id ?
-                            <Button variant='danger' value={reply._id} onClick={deleteReply}>X</Button> : null}
-                    </div>
-                    
+                    <p className="mb-0 thread-content">{reply.content}</p>
+                    <small className='thread-datetime'>{convertTimestamps(reply.createdAt)}</small>
                 </a>
             )
         })
         
 
         return (
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
+            <Modal show={show} onHide={handleClose} id='reply-modal'>
+                <Modal.Header closeButton closeVariant='white' id='reply-modal-header'>
                     <Modal.Title>Reply to Thread</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <div className="list-group mx-0 w-100" style={{ overflowY: 'scroll', maxHeight: '400px' }} id="replies-list-group">
-                        <a href="#" className="list-group-item list-group-item active" key={123}>
+                <Modal.Body id='reply-modal-body'>
+                    <div className="list-group mx-0 w-100" style={{ overflowY: 'scroll', maxHeight: '500px' }} id="replies-list-group">
+                        <a href="#" className="list-group-item list-group-item first" key={123}>
                         <div className="d-flex w-100 justify-content-between">
-                            <h5 className="mb-1">{currentThread.author.username}</h5>
-                            <small>{convertTimestamps(currentThread.createdAt)}</small>
+                            <h5 className="mb-0 thread-username">{currentThread.author.username}</h5>
+                            
                         </div>
-                        <p className="mb-1">{currentThread.firstMessage.content}</p>
+                            <p className="mb-0 thread-content">{currentThread.firstMessage.content}</p>
+                            <small className='thread-datetime first-date'>{convertTimestamps(currentThread.createdAt)}</small>
                         </a>
                         {repliesArray}
                     </div>

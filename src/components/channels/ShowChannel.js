@@ -6,7 +6,7 @@ import MemberSearch from '../shared/MemberSearch'
 import EditChannelModal from './EditChannelModal'
 
 const ShowChannel = (props) => {
-    const { user, msgAlert, currentChannel, setCurrentChannel, setRefreshChannels } = props
+    const { user, msgAlert, currentChannel, setCurrentChannel, setRefreshChannels, setRefreshMembers, socket } = props
 
     // console.log('channel in showChannel: ', currentChannel)
     
@@ -74,7 +74,7 @@ const ShowChannel = (props) => {
                     </div>
                     <div className="col d-flex flex-column justify-content-center" id="add-members-col">
                         <p id="add-members-header">Add Members: </p>
-                        <MemberSearch user={user} msgAlert={msgAlert}triggerRefresh={() => setUpdated(prev => !prev)}currentChannel={currentChannel}/>
+                        <MemberSearch user={user} msgAlert={msgAlert} triggerRefresh={() => setUpdated(prev => !prev)} currentChannel={currentChannel} setRefreshMembers={setRefreshMembers} socket={socket} />
                     </div>
                 </div>
                 <div className="row" id="show-channel-bot-row">

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Faster+One&family=Hind+Vadodara:wght@300&family=Nunito:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&family=Hind+Vadodara:wght@400&family=Nunito:wght@700&display=swap');
 
 html {
   background-color: #022C43;
@@ -296,7 +296,7 @@ code {
 
 #add-members-col {
   text-align: center;
-  padding: 0 1rem 1rem 1rem;
+  padding: 1rem;
 }
 
 #members-list-header {
@@ -427,26 +427,26 @@ code {
 }
 
 #channel-thread-list-group::-webkit-scrollbar {
-  width: 1rem;
+  width: .75rem;
   border-left: 1px solid #115173;
   background-color: #012437;
 }
 
 #channel-thread-list-group::-webkit-scrollbar-thumb {
   background-color: #115173;
-  border-radius: 25px;
+  background-clip: content-box;
 }
 
 #message-form-group #content {
   background-color: #115173!important;
-  border: 1px solid #1b6288!important;
+  border: 2px solid #477086!important;
   color: #ffffff!important;
   font-family: 'Hind Vadodara', sans-serif!important;
 }
 
 #message-form-submit {
-  background-color: #115173;
-  border: 1px solid #115173!important;
+  background-color: #477086;
+  border: 2px solid #477086!important;
   color: #022C43;
   font-family: 'Nunito', sans-serif!important;
   font-size: 2.85rem;
@@ -456,5 +456,97 @@ code {
 
 #message-form-submit:hover {
   background-color: #FFD700;
+  border: 2px solid #FFD700!important;
   transform: all .8s;
+}
+
+#reply-modal {
+  background-color: #022C43!important;
+  border-radius: 5px!important;
+}
+
+#reply-modal-header {
+  background-color: #022C43!important;
+  border: 1px solid #115173!important;
+  border-radius: 5px!important;
+  color: #ffffff;
+  font-family: 'Nunito', sans-serif!important;
+  border-bottom: none!important;
+  border-bottom-left-radius: 0!important;
+  border-bottom-right-radius: 0!important;
+  padding-bottom: 0!important;
+}
+
+#reply-modal-body {
+  background-color: #022C43!important;
+  border: 1px solid #115173!important;
+  border-top: none!important;
+  border-radius: 5px!important;
+  border-top-left-radius: 0!important;
+  border-top-right-radius: 0!important;
+  padding-left: 0!important;
+  padding-right: 0!important;
+  padding-bottom: 0!important;
+}
+
+#replies-list-group {
+  border-radius: 0!important;
+  border-top: 1px solid #115173!important;
+}
+
+#replies-list-group::-webkit-scrollbar {
+  width: .75rem;
+  border-left: 1px solid #115173;
+  background-color: #012437;
+}
+
+#replies-list-group::-webkit-scrollbar-thumb {
+  background-color: #115173;
+  background-clip: content-box;
+}
+
+#replies-list-group-item {
+  border: none!important;
+  background-color: #022C43!important;
+  border-radius: 0!important;
+  border-bottom: 1px solid #115173!important;
+  border-left: none!important;
+}
+
+.first {
+  border: none!important;
+  background-color: #115173!important;
+  border-radius: 0!important;
+  border-bottom: 1px solid #115173!important;
+  border-left: none!important;
+}
+
+#reply-form-group #content{
+  background-color: #115173!important;
+  border: 2px solid #477086!important;
+  color: #ffffff!important;
+  font-family: 'Hind Vadodara', sans-serif!important;
+}
+
+#reply-form-submit {
+  background-color: #477086;
+  border: 2px solid #477086!important;
+  color: #022C43;
+  font-family: 'Nunito', sans-serif!important;
+  font-size: 2.85rem;
+  padding-bottom: .6rem;
+}
+
+#reply-form-submit:hover {
+  background-color: #FFD700;
+  border: 2px solid #FFD700!important;
+  transform: all .8s;
+}
+
+.first-date {
+  color: #022C43!important;
+}
+
+.reply-form-container {
+  border-top: 1px solid #115173;
 }

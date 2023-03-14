@@ -5,19 +5,22 @@ import { getAllUsers } from '../../api/auth'
 import { addOrRemoveMember } from '../../api/channels'
 
 const MemberSearch = (props) => {
-    const { user, msgAlert, currentChannel, triggerRefresh } = props
+    const { user, msgAlert, currentChannel, triggerRefresh, setRefreshMembers, socket } = props
 
     const [selected, setSelected] = useState([])
     const [options, setOptions] = useState(null)
     const [newMember, setNewMember] = useState(null)
     const [runAddMember, setRunAddMember] = useState(false)
 
+
     useEffect(() => {
-        console.log('newMember: ', newMember)
+        // console.log('newMember: ', newMember)
         if (newMember) {
             addOrRemoveMember(user, currentChannel, 'add', newMember)
                 .then(() => { 
                     triggerRefresh()
+                    setRefreshMembers(prev => !prev)
+                    socket.emit('refreshMembers')
                     console.log('triggerRefresh ran in member search')
                 })
                 .catch(err => {

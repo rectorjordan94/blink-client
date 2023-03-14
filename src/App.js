@@ -35,20 +35,15 @@ const App = () => {
 	const [currentChannel, setCurrentChannel] = useState(null)
 	const [channelId, setChannelId] = useState("")
 	const [refreshChannels, setRefreshChannels] = useState(false)
-	// console.log('user in app', user)
-	// console.log('message alerts', msgAlerts)
-
-	// if (profile) {
-	// 	console.log('profile: ', profile)
-	// }
+	const [refreshMembers, setRefreshMembers] = useState(false)
 
 	const clearUser = () => {
-		console.log('clear user ran')
+		// console.log('clear user ran')
 		setUser(null)
 	}
 
 	const clearProfile = () => {
-		console.log('clear profile ran')
+		// console.log('clear profile ran')
 		setProfile(null)
 	}
 
@@ -74,7 +69,7 @@ const App = () => {
 				<Routes>
 					<Route path='/' element={
 						<RequireAuth user={user}>
-							<Home msgAlert={msgAlert} user={user} socket={socket} profile={profile} currentChannel={currentChannel} setCurrentChannel={setCurrentChannel} channelId={channelId} setChannelId={setChannelId} />
+							<Home msgAlert={msgAlert} user={user} socket={socket} profile={profile} currentChannel={currentChannel} setCurrentChannel={setCurrentChannel} channelId={channelId} setChannelId={setChannelId} refreshMembers={refreshMembers} setRefreshMembers={setRefreshMembers} />
 						</RequireAuth>}
 					/>
 					<Route
@@ -124,7 +119,7 @@ const App = () => {
 						path='/show-channel'
 						element={
 						<RequireAuth user={user}>
-								<ShowChannel msgAlert={msgAlert} user={user} currentChannel={currentChannel} setCurrentChannel={setCurrentChannel} setRefreshChannels={setRefreshChannels} />
+								<ShowChannel msgAlert={msgAlert} user={user} currentChannel={currentChannel} setCurrentChannel={setCurrentChannel} setRefreshChannels={setRefreshChannels} setRefreshMembers={setRefreshMembers} socket={socket} />
 						</RequireAuth>}
 					/>
 				</Routes>

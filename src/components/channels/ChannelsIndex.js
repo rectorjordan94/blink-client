@@ -4,7 +4,7 @@ import { getMyChannels, getOneChannel } from '../../api/channels'
 import Button from 'react-bootstrap/Button'
 
 const ChannelsIndex = (props) => {
-    const { msgAlert, user, onClick } = props
+    const { msgAlert, user, onClick, refreshMembers, socket, setRefreshMembers } = props
 
     const [channels, setChannels] = useState([])
     const [error, setError] = useState(false)
@@ -13,15 +13,25 @@ const ChannelsIndex = (props) => {
 
     // const [currentChannel, setCurrentChannel] = useState({})
 
+    socket.on('triggerMembersRefresh', () => {
+        console.log('SET REFRESH MEMBERS FROM SOCKET')
+        setRefreshMembers(prev => !prev)
+    })
+
     useEffect(() => {
         if (user) {
             getMyChannels(user)
                 .then(res => setChannels(res.data.channels))
+                .then(() => {
+                    console.log('my channels set')
+                    socket.removeAllListeners()
+                    console.log('removed listers for socket')
+                })
                 .catch(err => {
                     setError(true)
                 })
         }
-    }, [])
+    }, [refreshMembers])
 
     const channelButtons = channels.map((channel, i) => {
         return (

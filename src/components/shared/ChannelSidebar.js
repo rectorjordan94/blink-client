@@ -5,7 +5,7 @@ import ChannelsIndex from '../channels/ChannelsIndex'
 import { Link } from 'react-router-dom'
 
 const ChannelSidebar = (props) => {
-    const { msgAlert, user, channelId, onClick } = props
+    const { msgAlert, user, channelId, onClick, refreshMembers, socket, setRefreshMembers } = props
 
     const [modalShow, setModalShow] = useState(false)
 
@@ -19,7 +19,7 @@ const ChannelSidebar = (props) => {
                     +
                 </Link>
             </div>
-            <ChannelsIndex msgAlert={msgAlert} user={user} channelId={channelId} onClick={onClick} />
+            <ChannelsIndex msgAlert={msgAlert} user={user} channelId={channelId} onClick={onClick} refreshMembers={refreshMembers} socket={socket} setRefreshMembers={setRefreshMembers} />
         </div>
     )
 }

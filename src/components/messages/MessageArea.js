@@ -156,7 +156,7 @@ const MessageArea = (props) => {
 			    </Link>
                 <p className="mb-4" id='msg-area-channel-description'>{currentChannel.description}</p>
             </div>
-            <div className="list-group mx-0 w-100" style={{overflowY: 'scroll', maxHeight: '665px'}} id="channel-thread-list-group">
+            <div className="list-group mx-0 w-100" style={{overflowY: 'scroll', maxHeight: '660px'}} id="channel-thread-list-group">
                 {threadListItems}
             </div>
             <div className="container" id="message-input-container">
