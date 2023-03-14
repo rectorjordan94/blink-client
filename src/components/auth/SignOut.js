@@ -31,18 +31,18 @@ const SignOut = (props) => {
 
 	return (
 		<>
-            <div className='row'>
-                <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                    <h2>Are you sure you want to sign out?</h2>
-                    <small>We hate to see you go...</small><br/>
-                    <ButtonGroup>
-                        <Button variant='danger' onClick={onSignOut}>
+            <div className='row mx-0 w-100'>
+                <div className='col-sm-10 col-md-8 mx-auto mt-5 d-flex flex-column auth-container'>
+                    <h2 className='auth-header' id="sign-out-header">Are you sure you want to sign out?</h2>
+                    <p id="sign-out-message">Blink and you'll miss it...</p>
+                    <div className="container d-flex justify-content-evenly mb-3">
+                        <Button variant='danger' onClick={onSignOut} className='auth-submit'>
                             Sign Out
                         </Button>
-                        <Button variant='warning' onClick={onCancel}>
+                        <Button variant='warning' onClick={onCancel} className='auth-submit' id="sign-out-cancel">
                             Cancel
                         </Button>
-                    </ButtonGroup>
+                    </div>
                 </div>
             </div>
 		</>

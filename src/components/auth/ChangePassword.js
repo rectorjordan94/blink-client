@@ -45,7 +45,7 @@ const ChangePassword = (props) => {
 
 
     return (
-        <div className='row w-100'>
+        <div className='row mx-0 w-100'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5 d-flex flex-column auth-container'>
                 <h3 className='auth-header'>Change Password</h3>
                 <Form onSubmit={onChangePassword}>

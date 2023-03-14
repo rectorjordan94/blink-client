@@ -203,3 +203,20 @@ code {
 #profile-body {
   border: 1px solid #115173!important;
 }
+
+#sign-out-header {
+  font-size: 2rem!important;
+}
+
+#sign-out-message {
+  font-size: 1.25rem!important;
+  color: #ffffff!important;
+  text-align: center!important;
+  font-family: 'Hind Vadodara', sans-serif!important;
+}
+
+#sign-out-cancel {
+  background-color: #022C43!important;
+  color: #ffffff!important;
+  border: 1px solid #115173!important;
+}
