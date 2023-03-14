@@ -134,8 +134,7 @@ const MessageArea = (props) => {
         <a href="#" className="list-group-item list-group-item-action channel-threads" onClick={onClick} id={thread._id} key={i}>
                 <div style={{pointerEvents: 'none'}} className="d-flex w-100 justify-content-between align-items-center">
                     <h5 className="mb-1 text-primary" style={{ pointerEvents: 'none' }}>{thread.author.username ? thread.author.username : thread.owner.email}</h5>
-                    
-                    <small className="badge bg-warning rounded-pill" style={{pointerEvents: 'none'}}>{thread.replies.length}</small>
+                    { thread.replies.length > 0 ? <small className="badge bg-warning rounded-pill" style={{pointerEvents: 'none'}}>{thread.replies.length}</small> : null}
             </div>
             <p className="mb-1 text-white" style={{pointerEvents: 'none'}}>{thread.firstMessage.content}</p>
                 <div className="d-flex w-100 justify-content-between align-items-center">
@@ -145,7 +144,6 @@ const MessageArea = (props) => {
                 </div>
             </a>
         ))
-
     
     return (
         <div className="col-9">

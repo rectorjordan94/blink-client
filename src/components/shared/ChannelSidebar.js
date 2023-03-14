@@ -13,7 +13,7 @@ const ChannelSidebar = (props) => {
 
     return (
         <div className="col-3 bg-primary d-flex flex-column align-items-center" id="channel-sidebar">
-            <div className="container d-flex justify-content-center align-items-center mt-3">
+            <div className="container d-flex justify-content-center align-items-center mt-3" id="channel-header-sidebar">
                 <p id="my-channels-header">My Channels</p>
                 <Link to='create-channel' className="text-white" id="create-channel-button">
                     +

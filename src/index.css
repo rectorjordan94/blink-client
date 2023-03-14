@@ -48,19 +48,31 @@ code {
   font-family: 'Nunito', sans-serif;
 }
 
+.channel-buttons:hover {
+  color: #FFD700!important;
+  transition: all .5s;
+}
+
 #channel-header {
   background-color: #022C43!important;
   border: 1px solid #115173!important;
+  border-left: none!important;
 }
 
 #channel-name {
   text-decoration: none;
 }
 
+#channel-name:hover {
+  color: #FFD700!important;
+  transition: all .5s;
+}
+
 .channel-threads {
   background-color: #022C43!important;
   border-radius: 0!important;
   border: 1px solid #115173!important;
+  border-left: none!important;
 }
 
 #channel-thread-list-group {
@@ -97,7 +109,8 @@ code {
   padding: .5rem 3rem!important;
   background-color: #FFD700!important;
   color: #000000!important;
-  border: none!important;
+  /* border: none!important; */
+  border: 1px solid #FFD700!important;
   font-family: 'Nunito', sans-serif!important;
   font-size: 1.15rem!important;
 }
@@ -176,6 +189,11 @@ code {
   font-family: 'Nunito', sans-serif!important;
   margin: 0;
   font-size: 1.1rem;
+  /* border: 1px solid #115173!important; */
+}
+
+#channel-header-sidebar {
+  border-bottom: 1px solid #115173;
 }
 
 #create-channel-button {
@@ -239,4 +257,86 @@ code {
   padding: 1rem;
   border: 1px solid #115173!important;
   border-radius: 5px!important;
+}
+
+#show-channel-container {
+  background-color: #053F5E!important;
+  border: 1px solid #115173!important;
+  border-radius: 5px!important;
+  padding: 1rem;
+}
+
+#show-channel-name {
+  font-family: 'Nunito', sans-serif!important;
+  color: #FFD700;
+}
+
+#show-channel-description {
+  font-family: 'Nunito', sans-serif!important;
+  color: #ffffff;
+  font-size: 1.25rem;
+}
+
+#show-channel-top-row {
+  border-bottom: 1px solid #115173;
+  /* margin-bottom: 1rem!important; */
+}
+
+#members-list-col {
+  text-align: center;
+  border-right: 1px solid #115173;
+  padding: 1rem;
+}
+
+#add-members-col {
+  text-align: center;
+  padding: 0 1rem 1rem 1rem;
+}
+
+#members-list-header {
+  font-family: 'Nunito', sans-serif!important;
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+#add-members-header {
+  font-family: 'Nunito', sans-serif!important;
+  color: #FFD700;
+  font-size: 1.2rem;
+}
+
+#show-channel-mid-row {
+  border-bottom: 1px solid #115173;
+  margin-bottom: 1rem;
+}
+
+.members-list-email {
+  font-family: 'Hind Vadodara', sans-serif!important;
+  color: #ffffff;
+  margin: 0;
+  padding: .15rem;
+  border-bottom: 1px solid #115173;
+  /* background-color: #022C43; */
+}
+
+#members-list-container {
+  background-color: #022C43;
+  border-radius: 5px;
+  padding: .15rem 0;
+  border: 1px solid #115173;
+}
+
+#members-list-container p:last-child {
+  border: none;
+}
+
+#member-search-form .rbt-input-main{
+  background-color: #022C43!important;
+  border: 1px solid #115173!important;
+}
+
+#delete-channel-button {
+  background-color: #022C43!important;
+  border: 1px solid #115173!important;
+  color: #ffffff!important
 }

@@ -52,39 +52,39 @@ const ShowChannel = (props) => {
 
     const membersList = currentChannel.members.map((member, i) => {
         return (
-            <p key="i">{member.email}</p>
+            <p key="i" className="members-list-email">{member.email}</p>
         )
     })
 
     return (
         <>
-            <Container className="bg-success">
-                <div className="row">
-                    <div className="col">
-                        <h1>{currentChannel.name}</h1>
+            <Container className="mt-5" id="show-channel-container">
+                <div className="row" id="show-channel-top-row">
+                    <div className="col text-center">
+                        <h1 id="show-channel-name"># {currentChannel.name}</h1>
+                        <h3 id="show-channel-description">{currentChannel.description}</h3>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col">
-                        <h3>{currentChannel.description}</h3>
+                <div className="row" id="show-channel-mid-row">
+                    <div className="col" id="members-list-col">
+                        <p id="members-list-header">Members: </p>
+                        <div id="members-list-container">
+                            {membersList}
+                        </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        {membersList}
-                    </div>
-                    <div className="col">
+                    <div className="col d-flex flex-column justify-content-center" id="add-members-col">
+                        <p id="add-members-header">Add Members: </p>
                         <MemberSearch user={user} msgAlert={msgAlert}triggerRefresh={() => setUpdated(prev => !prev)}currentChannel={currentChannel}/>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row" id="show-channel-bot-row">
                     <div className="col">
-                        <Button className="m-2" variant='info' onClick={() => setEditModalShow(true)}>
+                        <Button className="m-2 auth-submit" variant='info' onClick={() => setEditModalShow(true)}>
                             Edit Channel
                         </Button>
                     </div>
-                    <div className="col">
-                        <Button className="m-2" variant='danger' onClick={() => deleteChannel()}>
+                    <div className="col d-flex justify-content-end">
+                        <Button className="m-2 auth-submit" id="delete-channel-button" variant='danger' onClick={() => deleteChannel()}>
                             Delete Channel
                         </Button>
                     </div>

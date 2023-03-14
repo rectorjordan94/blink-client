@@ -65,7 +65,7 @@ const MemberSearch = (props) => {
 
     return (
         <>
-            <Form.Group>
+            <Form.Group id="member-search-form">
                 <Typeahead
                     id="member-search"
                     labelKey="email"
