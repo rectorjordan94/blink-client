@@ -21,8 +21,6 @@ const CreateProfile = (props) => {
 	const onProfileCreate = (event) => {
 		event.preventDefault()
 
-		
-
         const profileInfo = {username, fullName, location, pronouns}
 
         // need to make an api call to create the profile, then another to add the profile to a user (needs the profile id for that?)

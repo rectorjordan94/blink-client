@@ -139,7 +139,7 @@ const MessageArea = (props) => {
                     { thread.replies.length > 0 ? <small className="badge rounded-pill thread-badge" style={{pointerEvents: 'none'}}>{thread.replies.length}</small> : null}
             </div>
             <p className="thread-content mb-0" style={{pointerEvents: 'none'}}>{thread.firstMessage.content}</p>
-                <div className="d-flex w-100 justify-content-between align-items-center" style={{pointerEvents: 'none'}}>
+                <div className="d-flex w-100 justify-content-between align-items-center">
                     <small className="thread-datetime" style={{ pointerEvents: 'none' }}>{convertTimestamps(thread.createdAt)}</small>
                     {user.id === thread.owner ?
                             <Button className='thread-delete' variant='danger' value={thread._id} onClick={deleteThread}>X</Button> : null }
