@@ -53,7 +53,7 @@ const ChannelSearch = (props) => {
                     labelKey="name"
                     onChange={setSelected}
                     options={options}
-                    minLength={2}
+                    minLength={1}
                     placeholder="Search for a channel..."
                     selected={selected}
                 />
