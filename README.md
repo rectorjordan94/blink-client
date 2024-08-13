@@ -2,6 +2,8 @@
 
 ### [Deployed Link](https://blinkchat.netlify.app/)
 
+### [Api GitHub Link](https://github.com/rectorjordan94/blink-api)
+
 ## Overview
 
 Full-stack Slack clone where users can create and join different channels and chat with other users in real-time. Built with the MERN stack using the MVC system for organizing the code. Utilizes socket.io for bidirectional event-based communication between clients and server for chat functionality. Created with HTML, CSS, JavaScript, React, MongoDB, Mongoose, Express, and Node.js.
@@ -34,7 +36,7 @@ Full-stack Slack clone where users can create and join different channels and ch
     - Socket.io (library that enables low-latency, bidirectional, and event-based communication between a client and a server -- for chat functionality)
 
 ## ERD
-![ERD](images/BLINK_ERD.png)
+![ERD](/public/images/BLINK_ERD.png)
 
 ## Route Tables
 
@@ -77,27 +79,27 @@ Full-stack Slack clone where users can create and join different channels and ch
 
 ### Message Area
 
-![MESSAGE_AREA](images/channel.png)
+![MESSAGE_AREA](/public/images/channel.png)
 
 ### Auth
 
-![AUTH](images/AUTH.png)
+![AUTH](/public/images/AUTH.png)
 
 ### Profile
 
-![PROFILE](images/PROFILE.png)
+![PROFILE](/public/images/PROFILE.png)
 
 ### Channel Show
 
-![CHANNEL_SHOW](images/CHANNEL_SEARCH.png)
+![CHANNEL_SHOW](/public/images/CHANNEL_SEARCH.png)
 
 ### Thread
 
-![THREAD](images/THREAD.png)
+![THREAD](/public/images/THREAD.png)
 
 ## Component Diagram
 
-![Component_Diagram](images/component_diagram.png)
+![Component_Diagram](/public/images/component_diagram.png)
 
 ## Stretch Goals
     - upload for user profile photos
